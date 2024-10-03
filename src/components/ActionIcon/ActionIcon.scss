@@ -1,0 +1,53 @@
+@import '../global.scss';
+
+.bp-action-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: $font-family-text;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s ease-in;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    span {
+        font-size: 1.2rem;
+    }
+
+    i {
+        font-size: 30px;
+    }
+
+    &.sm {
+        span {
+            font-size: 0.8rem;
+        }
+
+        i {
+            font-size: 20px;
+        }
+    }
+
+    &.xs {
+        span {
+            font-size: 0.6rem;
+        }
+
+        i {
+            font-size: 15px;
+        }
+    }
+
+    &.lg {
+        span {
+            font-size: 2.0rem;
+        }
+
+        i {
+            font-size: 50px;
+        }
+    }
+}

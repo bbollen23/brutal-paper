@@ -1,4 +1,41 @@
-button {
-    font-size: 60px;
-    border: 2px solid red;
+@import '../global.scss';
+
+.bp-btn-container {
+    width: auto;
+    position: relative;
+
+    &.btn-small {
+        width: 150px;
+    }
+
+    &.clicked {
+        .btn {
+            transform: translate(2px, 2px);
+        }
+    }
+
+    .btn {
+        position: relative;
+        transition: 0.1s ease-in;
+        z-index: 1;
+        border: 1px solid black;
+        padding: 5px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: $font-family-title;
+        background-color: var(--card-background-color);
+        font-size: 0.8rem;
+        cursor: pointer;
+    }
+
+    .btn-shadow {
+        z-index: 0;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
 }

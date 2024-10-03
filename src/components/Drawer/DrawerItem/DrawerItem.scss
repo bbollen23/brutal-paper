@@ -1,0 +1,49 @@
+@import '../../global.scss';
+@import '../Drawer.scss';
+
+
+.bp-drawer-item {
+    font-family: $font-family-text;
+    box-sizing: border-box;
+    padding: ($bp-drawer-item-spacing/2) 0px ($bp-drawer-item-spacing/2) $bp-drawer-padding;
+    cursor: pointer;
+    width: 100%;
+    background-color: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2rem;
+    position: relative;
+    transition: 0.1s ease-out;
+
+    &:hover {
+        border-right: 1px solid black;
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+        transform: translateX(10px);
+    }
+
+    &:after,
+    &:before {
+        content: '';
+        width: calc(100% + 1px);
+        background-color: inherit;
+        position: absolute;
+        height: 2px;
+        left: -10px;
+        transition: none;
+    }
+
+    &:after {
+        bottom: -1px;
+    }
+
+    &:before {
+        top: -1px;
+    }
+
+    i {
+        font-size: 20px;
+    }
+}

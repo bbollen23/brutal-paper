@@ -1,0 +1,90 @@
+@import '../global.scss';
+
+.bp-card-container {
+
+    position: relative;
+    height: 250px;
+    max-width: 700px;
+
+    &.card-small {
+        height: 120px;
+
+        .card {
+            clip-path: polygon(calc(100% - 28px) 0, calc(100%) 28px, calc(100%) 100%, 0 100%, 0 0);
+        }
+
+        .card-shadow {
+            clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%, 0 0);
+        }
+
+        .card-border {
+            clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%, 0 0);
+
+        }
+    }
+
+    .card-shadow {
+        background-color: var(--card-shadow-color);
+        transform: translate($card-clicked-move-x, $card-clicked-move-y);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        top: 0px;
+        left: 0px;
+        clip-path: polygon(calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+    }
+
+    .card-border {
+        background-color: var(--card-border-color);
+        padding: 2px;
+        height: calc(100% + 1px);
+        width: calc(100% + 1px);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        z-index: 1;
+        clip-path: polygon(calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+    }
+
+    .card {
+        padding: 5px 30px 5px 30px;
+        position: relative;
+        width: 100%;
+        background-color: var(--card-background-color);
+        height: 100%;
+        z-index: 2;
+        clip-path: polygon(calc(100% - 38px) 0, calc(100%) 38px, calc(100%) 100%, 0 100%, 0 0);
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        box-sizing: border-box; // Include padding and borders in width
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-container {
+            .title {
+                font-size: 2.0rem;
+                font-weight: bold;
+                padding-bottom: 5px;
+                font-family: $font-family-title;
+            }
+        }
+
+        .card-text {
+            font-family: $font-family-text;
+        }
+    }
+}

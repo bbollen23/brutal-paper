@@ -33,6 +33,10 @@ const Template: ComponentStory<typeof Layout> = (args) => {
         return value.length > 8;
     };
 
+    const customValidatorUsername = (value: string) => {
+        return value.length > 2;
+    };
+
     const [modalOpened, setModalOpened] = useState<boolean>(false);
 
     const toggleModal = () => {
@@ -97,11 +101,23 @@ const Template: ComponentStory<typeof Layout> = (args) => {
                     title='Please Log In'
                 />
                 <ModalContent style={{ marginBottom: '20px' }}>
-                    <div className="flex-col">
-                        <div style={{ marginBottom: '40px', fontSize: '1.2rem' }}>Please enter in your credentials.</div>
-                        <Input onChange={(e) => handleInputChange(e, 'username')} value={username} label='Username' />
-                        <Input type='password' validator={customValidator} errorMessage="Password Must be at least 8 characters" onChange={(e) => handleInputChange(e, 'password')} value={password} label='Password' />
-
+                    <div className="flex-col gap-20">
+                        <div style={{ fontSize: '1.2rem' }}>
+                            Please enter in your credentials.
+                        </div>
+                        <Input
+                            onChange={(e) => handleInputChange(e, 'username')} value={username}
+                            label='Username'
+                            errorMessage='Oh no!'
+                            validator={customValidatorUsername}
+                        />
+                        <Input
+                            onChange={(e) => handleInputChange(e, 'password')} value={password}
+                            label='Password'
+                            errorMessage="Password must be at least 8 characters in length"
+                            validator={customValidator}
+                            type='password'
+                        />
                     </div>
                 </ModalContent>
             </Modal>

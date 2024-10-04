@@ -53,8 +53,8 @@ const Button = ({ disabled, size, backgroundColor, style, label, onClick, flat }
     const buttonClasses = getClassNames({ size, isClicked, flat, disabled });
 
     return (
-        <div style={style} onClick={handleClick} className="bp-btn-wrapper">
-            <div className={buttonClasses}>
+        <div style={style} className="bp-btn-wrapper">
+            <div onClick={handleClick} className={buttonClasses}>
                 <div className="bp-btn" style={{ backgroundColor }}>
                     {label}
                 </div>

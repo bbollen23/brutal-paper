@@ -1,44 +1,115 @@
-@import '../global.scss';
-
-$bp-drawer-padding: 10px;
+$bp-drawer-padding-top: 10px;
+$bp-drawer-padding-left: 15px;
 $bp-drawer-item-spacing: 30px;
-$bp-drawer-background-color: var(--card-background-color);
-$bp-drawer-width: 300px;
-
-.bp-drawer-wrapper {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    transition: background-color 0.5s ease;
-    pointer-events: none;
-    overflow-x: hidden;
-
-    &.open {
-        pointer-events: all;
-        background-color: rgba(216, 216, 216, 0.3);
-    }
-}
+$bp-drawer-width: 350px;
 
 .bp-drawer-container {
+    border-right: 1px solid var(--theme-border-color);
+    position: absolute;
+    top: 0;
+    height: max-content;
+    transition: 0.2s ease-in;
+    width: $bp-drawer-width;
+
     .bp-drawer-content {
-        width: auto;
-        max-width: $bp-drawer-width;
-        height: 100%;
+        background-color: var(--theme-header-background-color);
+        color: var(--theme-header-text-color);
+        width: $bp-drawer-width;
+        min-height: 100vh;
         box-sizing: border-box;
-        border-right: 1px solid black;
-        font-family: $font-family-text;
-        background-color: var(--card-background-color);
-        box-shadow: 4px 0px 4px #d5d5d5;
+        font-family: var(--theme-font-family-text);
         display: flex;
         flex-direction: column;
-        padding-top: $bp-drawer-padding;
+        padding-top: $bp-drawer-padding-top;
     }
 
-    position:absolute;
-    top:0;
-    height: 100%;
-    transition:0.2s ease-in;
-    width:$bp-drawer-width;
+
+    .bp-drawer-header {
+        .bp-drawer-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-family: var(--theme-font-family-title);
+        }
+
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        padding:0px $bp-drawer-padding-left;
+
+        .bp-drawer-close {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.1s ease-in;
+
+            &:hover {
+                background-color: rgba(81, 81, 81, 0.1);
+            }
+        }
+    }
+
+
+    .bp-drawer-item {
+        font-family: var(--theme-font-family-text);
+        box-sizing: border-box;
+        padding: ($bp-drawer-item-spacing/2) 0px ($bp-drawer-item-spacing/2) $bp-drawer-padding-left;
+        cursor: pointer;
+        width: 100%;
+        background-color: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.2rem;
+        position: relative;
+        transition: 0.1s ease-out;
+
+        &:hover {
+            border-right: 1px solid var(--theme-border-color);
+            border-top: 1px solid var(--theme-border-color);
+            border-bottom: 1px solid var(--theme-border-color);
+            transform: translateX(10px);
+        }
+
+        &:after,
+        &:before {
+            content: '';
+            width: calc(100% + 1px);
+            background-color: inherit;
+            position: absolute;
+            height: 2px;
+            left: -10px;
+            transition: none;
+        }
+
+        &:after {
+            bottom: -1px;
+        }
+
+        &:before {
+            top: -1px;
+        }
+
+        i {
+            font-size: 20px;
+        }
+    }
+
+    .bp-header-group {
+        margin: 0px 20px;
+    }
+
+
+
+
 
 
     &.open {
@@ -51,4 +122,26 @@ $bp-drawer-width: 300px;
         /* When closed, slide out */
     }
 
+}
+
+.bp-drawer-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100vw;
+    max-height: 100vh;
+    transition: background-color 0.5s ease;
+    pointer-events: none;
+    z-index: 5;
+    overflow-y: scroll;
+    scrollbar-width: 0px;
+
+    ::-webkit-scrollbar-track {
+        width: 0px;
+    }
+
+
+    &.open {
+        pointer-events: all;
+        background-color: hsla(var(--gray-300), 0.5);
+    }
 }

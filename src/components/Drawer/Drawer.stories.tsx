@@ -7,8 +7,11 @@ import Button from "../Button";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "ReactComponentLibrary/Drawer",
+    title: "BrutalPaper/Drawer",
     component: Drawer,
+    parameters: {
+        layout: 'fullscreen'
+    }
 } as ComponentMeta<typeof Drawer>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -21,7 +24,7 @@ const Template: ComponentStory<typeof Drawer> = (args) => {
     }
 
     return (
-        <div style={{ "height": '500px' }}>
+        <div style={{ "height": '100vh' }}>
             <Button
                 style={{ zIndex: 0, position: 'absolute', left: '400px', top: '40px' }}
                 onClick={toggleDrawer} label="Toggle Drawer" size="sm" />
@@ -41,16 +44,49 @@ Loon.args = {
     </>
 };
 
-export const LoonNew = Template.bind({});
+export const DrawerShort = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-LoonNew.args = {
+DrawerShort.args = {
     backgroundColor: 'white',
     closeOnOutside: true,
     children: <>
         <DrawerHeader title="Brian C Bollen" closeButton />
-        <DrawerItem icon="bi-house" label="Home" />
-        <DrawerItem icon="bi-kanban" label="Projects" />
-        <DrawerItem icon="bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+
+    </>
+};
+
+export const DrawerLong = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+DrawerLong.args = {
+    backgroundColor: 'white',
+    closeOnOutside: true,
+    children: <>
+        <DrawerHeader title="Brian C Bollen" closeButton />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+        <DrawerItem icon="bi bi-house" label="Home" />
+        <DrawerItem icon="bi bi-kanban" label="Projects" />
+        <DrawerItem icon="bi bi-bar-chart-line" label="Research" />
+
     </>
 };
 

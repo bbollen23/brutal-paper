@@ -1,0 +1,52 @@
+.bp-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input {
+        all: unset;
+        box-sizing: border-box;
+    }
+
+    input.bp-input {
+        width: auto;
+        height: 40px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2px 2px 2px 20px;
+        border-radius: 2px;
+
+        &:focus {
+            border: 2px solid black;
+        }
+
+        &.invalid {
+            border: 2px solid hsl(var(--red-400));
+        }
+
+    }
+
+    .bp-invalid-container {
+        height: calc(0.8rem + 10px);
+        box-sizing: border-box;
+        padding: 5px;
+        color: hsl(var(--red-400));
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+
+    .bp-label {
+        font-size: 1.0rem;
+        margin-left: 2px;
+
+    }
+
+    .bp-placeholder {
+        color: var(--theme-input-placeholder-color)
+    }
+}

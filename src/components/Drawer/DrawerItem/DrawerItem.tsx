@@ -1,5 +1,4 @@
 import React from 'react'
-import './DrawerItem.scss'
 
 export interface DrawerItemProps {
     children?: React.ReactNode;
@@ -10,7 +9,7 @@ export interface DrawerItemProps {
 const DrawerItem = ({ children, label, icon }: DrawerItemProps): JSX.Element => {
     return (
         <div className='bp-drawer-item'>
-            {icon ? <i className={`bi ${icon}`}></i> : null}
+            {icon ? <i className={`${icon}`}></i> : null}
             {children ? children : <span>{label}</span>}
         </div>
     )

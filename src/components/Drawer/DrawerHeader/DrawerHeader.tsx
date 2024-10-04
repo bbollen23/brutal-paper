@@ -1,7 +1,6 @@
 import React from 'react';
-import './DrawerHeader.scss';
-import "bootstrap-icons/font/bootstrap-icons.css"
 import { useDrawer } from '../DrawerContext';
+import Icon from '../../Icon';
 
 export interface DrawerHeaderProps {
     title: string
@@ -13,7 +12,7 @@ const DrawerHeader = ({ title, closeButton }: DrawerHeaderProps): JSX.Element =>
     return (
         <div className='bp-drawer-header'>
             <div className='bp-drawer-title'>{title}</div>
-            {closeButton ? <i onClick={closeDrawer} className="bp-drawer-close bi bi-x-lg"></i> : null}
+            {closeButton ? <Icon onClick={closeDrawer} icon="bi bi-x-lg" size="sm" /> : null}
         </div>
     )
 }

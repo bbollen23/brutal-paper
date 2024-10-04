@@ -1,4 +1,9 @@
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { DrawerHeader, DrawerItem, Drawer } from './Drawer';
-export { default as ActionIcon } from './ActionIcon';
+export { default as Icon } from './Icon';
+export { default as Layout } from './Layout';
+export { Header, HeaderTitle, HeaderItem } from './Header';
+export { default as Body } from './Body';
+export { Modal, ModalHeader, ModalContent } from './Modal';
+export { default as Input } from './Input';

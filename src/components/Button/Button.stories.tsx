@@ -4,7 +4,7 @@ import Button from "./Button";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "ReactComponentLibrary/Button",
+    title: "BrutalPaper/Button",
     component: Button,
 } as ComponentMeta<typeof Button>;
 
@@ -15,7 +15,9 @@ export const SmallClickMe = Template.bind({});
 SmallClickMe.args = {
     label: "Click me!",
     backgroundColor: '#f3f4f6',
-    size: "sm"
+    size: "sm",
+    disabled: true
+
 };
 
 export const HelloWorld = Template.bind({});

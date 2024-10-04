@@ -1,0 +1,147 @@
+import React, { useState } from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Drawer, DrawerHeader, DrawerItem } from "../Drawer";
+import Layout from "./Layout";
+import { Header, HeaderItem, HeaderTitle, HeaderGroup } from "../Header";
+import Icon from '../Icon';
+import Card from "../Card";
+import Button from "../Button";
+import Body from "../Body";
+import { Modal, ModalHeader, ModalContent } from "../Modal";
+import Input from "../Input";
+
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export default {
+    title: "BrutalPaper/Layout",
+    component: Layout,
+    parameters: {
+        layout: 'fullscreen'
+    }
+} as ComponentMeta<typeof Layout>;
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const Template: ComponentStory<typeof Layout> = (args) => {
+
+    const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
+
+    const toggleDrawer = () => {
+        setDrawerOpened((prev) => !prev);
+    }
+
+
+    const customValidator = (value: string) => {
+        return value.length > 8;
+    };
+
+    const [modalOpened, setModalOpened] = useState<boolean>(false);
+
+    const toggleModal = () => {
+        setModalOpened((prev) => !prev);
+    }
+
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
+        if (key === 'username') {
+            setUsername(event.target.value);
+        } else {
+            setPassword(event.target.value);
+        }
+    };
+
+    const handleModalClose = () => {
+        setUsername('');
+        setPassword('');
+    }
+
+    return (
+        <Layout type='d-overlap'>
+            <Header>
+                <HeaderTitle>MuView</HeaderTitle>
+                <HeaderGroup>
+                    <HeaderItem label="Albums"></HeaderItem>
+                    <HeaderItem label="Community"></HeaderItem>
+                </HeaderGroup>
+                <HeaderGroup alignment="right">
+                    <Button label="Sign Up" />
+                    <Button onClick={toggleModal} label="Login" />
+                    <Icon icon="bi bi-gear" onClick={toggleDrawer} />
+                </HeaderGroup>
+            </Header>
+            <Body>
+
+                {args.children}
+            </Body>
+            <Drawer opened={drawerOpened} closeOnOutside onChange={setDrawerOpened} >
+                <DrawerHeader title="Brian Bollen, Ph.D." closeButton />
+                <DrawerItem icon="bi bi-house" label="Home" />
+                <DrawerItem icon="bi bi-bar-chart-steps" label="Projects" />
+                <DrawerItem icon="bi bi-activity" label="Research" />
+            </Drawer>
+            <Modal
+                style={{ maxWidth: '500px' }}
+                opened={modalOpened}
+                setOpened={setModalOpened}
+                onClose={handleModalClose}
+                closeOnOutside
+                actions={
+                    <>
+                        <Button flat label='Cancel' />
+                        <Button disabled={!(username !== '' && customValidator(password))} label='Log In' onClick={toggleModal} />
+                    </>
+                }>
+                <ModalHeader
+                    closeButton={true}
+                    title='Please Log In'
+                />
+                <ModalContent style={{ marginBottom: '20px' }}>
+                    <div className="flex-col">
+                        <div style={{ marginBottom: '40px', fontSize: '1.2rem' }}>Please enter in your credentials.</div>
+                        <Input onChange={(e) => handleInputChange(e, 'username')} value={username} label='Username' />
+                        <Input type='password' validator={customValidator} errorMessage="Password Must be at least 8 characters" onChange={(e) => handleInputChange(e, 'password')} value={password} label='Password' />
+
+                    </div>
+                </ModalContent>
+            </Modal>
+        </Layout>
+
+    );
+};
+
+
+export const MuView = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+MuView.args = {
+    children:
+        <>
+            <div style={{ width: '500px' }}>
+                <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
+                    <>
+                        <Button flat label='Cancel' />
+                        <Button label='Okay' />
+                    </>
+                }>
+                    A cell microscopy visualization platform for large-scale cell data analysis
+
+                </Card>
+                <Card className='bp-mt-md' size="sm" title="Loon" actions={
+                    <>
+                        <Button flat label='Cancel' />
+                        <Button label='Okay' />
+                    </>
+                }>
+                    A cell microscopy visualization platform for large-scale cell data analysis
+                </Card>
+
+
+            </div>
+        </>
+
+
+};
+
+
+
+

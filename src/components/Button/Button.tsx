@@ -7,17 +7,27 @@ export interface ButtonProps {
     size?: string;
     onClick?: () => void;
     style?: React.CSSProperties;
+    flat?: boolean;
+    disabled?: boolean;
 }
 
 interface ClassNameProps {
-    size?: string,
-    isClicked: boolean
+    size?: string;
+    isClicked: boolean;
+    flat?: boolean;
+    disabled?: boolean;
 }
 
-const getClassNames = ({ size, isClicked }: ClassNameProps): string => {
+const getClassNames = ({ size, isClicked, flat, disabled }: ClassNameProps): string => {
     let className = 'bp-btn-container';
     if (size == 'sm') {
-        className = `${className} btn-small`
+        className = `${className} bp-btn-small`
+    }
+    if (flat) {
+        className = `${className} flat`
+    }
+    if (disabled) {
+        className = `${className} disabled`
     }
     if (isClicked) {
         className = `${className} clicked`
@@ -27,7 +37,7 @@ const getClassNames = ({ size, isClicked }: ClassNameProps): string => {
 
 
 
-const Button = ({ size, backgroundColor, style, label, onClick }: ButtonProps): JSX.Element => {
+const Button = ({ disabled, size, backgroundColor, style, label, onClick, flat }: ButtonProps): JSX.Element => {
 
     const [isClicked, setIsClicked] = React.useState<boolean>(false);
 
@@ -40,14 +50,17 @@ const Button = ({ size, backgroundColor, style, label, onClick }: ButtonProps): 
         }
     }
 
-    const buttonClasses = getClassNames({ size, isClicked });
+    const buttonClasses = getClassNames({ size, isClicked, flat, disabled });
 
     return (
-        <div style={style} onClick={handleClick} className={buttonClasses}>
-            <div className="btn" style={{ backgroundColor }}>
-                {label}
+        <div style={style} onClick={handleClick} className="bp-btn-wrapper">
+            <div className={buttonClasses}>
+                <div className="bp-btn" style={{ backgroundColor }}>
+                    {label}
+                </div>
+                {!flat && !disabled ? <div className="bp-btn-shadow"></div> : null}
             </div>
-            <div className="btn-shadow"></div>
+
         </div>
 
     );

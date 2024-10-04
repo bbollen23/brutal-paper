@@ -1,35 +1,48 @@
-@import '../global.scss';
-
 .bp-btn-container {
     width: auto;
     position: relative;
 
-    &.btn-small {
+    &.bp-btn-small {
         width: 150px;
     }
 
+    &.flat .bp-btn {
+        border: none;
+        background-color: inherit;
+    }
+
+    &.disabled .bp-btn {
+        background-color: inherit;
+        border: 1px solid hsl(var(--gray-300));
+        color: hsl(var(--gray-400));
+    }
+
     &.clicked {
-        .btn {
+        .bp-btn {
             transform: translate(2px, 2px);
         }
     }
 
-    .btn {
+    .bp-btn {
         position: relative;
-        transition: 0.1s ease-in;
         z-index: 1;
         border: 1px solid black;
         padding: 5px 20px;
         width: 100%;
         box-sizing: border-box;
         text-align: center;
-        font-family: $font-family-title;
+        font-family: var(--theme-font-family-text);
         background-color: var(--card-background-color);
         font-size: 0.8rem;
         cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
     }
 
-    .btn-shadow {
+    .bp-btn-shadow {
         z-index: 0;
         position: absolute;
         top: 2px;

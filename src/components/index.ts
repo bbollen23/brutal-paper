@@ -11,3 +11,4 @@ export { Sidebar, SidebarHeader, SidebarItem, SidebarSectionTitle } from './Side
 export { default as Scrollable } from './Scrollable';
 export { default as Divider } from './Divider';
 export { default as Tabs } from './Tabs';
+export { LoadingIcon, LoadingOverlay } from './Loading';

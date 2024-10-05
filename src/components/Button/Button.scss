@@ -2,16 +2,49 @@
     width: auto;
     min-width: 100px;
     position: relative;
+    box-sizing: border-box;
 
     &.bp-btn-small {
         width: 70px;
         min-width: 70px;
+
+        .bp-btn {
+            font-size: 0.6rem;
+            padding: 5px 5px;
+        }
     }
 
     &.flat .bp-btn {
         border: none;
         background-color: inherit;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: hsla(var(--gray-200), 0.5);
+        }
     }
+
+    &.delete .bp-btn {
+        background-color: hsl(var(--red-600));
+        color: hsl(var(--gray-100));
+    }
+
+    &.confirm .bp-btn {
+        background-color: hsl(var(--green-600));
+        color: hsl(var(--gray-100));
+    }
+
+    &.cancel .bp-btn {
+        border: none;
+        background-color: inherit;
+        color: hsl(var(--red-700));
+
+        &:hover {
+            border-radius: 4px;
+            background-color: hsla(var(--red-700), 0.3)
+        }
+    }
+
 
     &.disabled {
         pointer-events: none;
@@ -34,13 +67,13 @@
     .bp-btn {
         position: relative;
         z-index: 1;
-        border: 1px solid black;
+        border: 1px solid var(--theme-card-border-color);
         padding: 5px 20px;
         width: 100%;
         box-sizing: border-box;
         text-align: center;
         font-family: var(--theme-font-family-text);
-        background-color: var(--card-background-color);
+        background-color: var(--theme-card-background-color);
         font-size: 0.8rem;
         cursor: pointer;
 
@@ -57,6 +90,6 @@
         left: 2px;
         width: 100%;
         height: 100%;
-        background-color: black;
+        background-color: var(--theme-card-border-color);
     }
 }

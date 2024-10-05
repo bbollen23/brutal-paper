@@ -4,6 +4,7 @@ export interface TabsProps {
     tabData: TabInfo[];
     defaultIndex?: number;
     selectedIndex?: number;
+    flat?: boolean;
 }
 
 export interface TabInfo {
@@ -12,7 +13,7 @@ export interface TabInfo {
     defaultIndex?: number
 }
 
-const Tabs = ({ tabData, defaultIndex }: TabsProps): JSX.Element => {
+const Tabs = ({ flat, tabData, defaultIndex }: TabsProps): JSX.Element => {
 
     const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex ?? 0);
 
@@ -23,7 +24,8 @@ const Tabs = ({ tabData, defaultIndex }: TabsProps): JSX.Element => {
         )
     })
 
-    const tabContent = (<div className='bp-tabs-content'>{tabData[selectedIndex].content}</div>);
+    const tabContent = (<div className=' flat bp-tabs-content'>{tabData[selectedIndex].content}</div>);
+
 
     return (
         <div className='bp-tabs-container'>

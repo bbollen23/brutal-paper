@@ -4,9 +4,9 @@
 }
 
 .bp-divider {
-    margin: 10px;
+    margin: 10px 20px;
     max-width: 100%;
     box-sizing: border-box;
     height: 1px;
-    background-color: hsl(var(--gray-400));
+    background-color: var(--theme-border-color);
 }

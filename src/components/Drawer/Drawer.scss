@@ -58,7 +58,7 @@ $bp-drawer-width: 350px;
 
         &:hover {
             text-decoration: underline;
-            background-color: hsla(var(--gray-300), 0.7);
+            background-color: var(--theme-item-hover-color);
         }
 
         i {
@@ -107,7 +107,7 @@ $bp-drawer-width: 350px;
 
     &.open {
         pointer-events: all;
-        background-color: hsla(var(--gray-300), 0.5);
+        background-color: var(--theme-modal-backdrop-color);
     }
 
 

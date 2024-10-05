@@ -1,6 +1,6 @@
 .bp-card-container {
     position: relative;
-    margin: 5px;
+    margin: 20px;
 
     &.bp-card-sm {
         .bp-card {
@@ -33,7 +33,7 @@
     }
 
     .bp-card-shadow {
-        background-color: var(--card-shadow-color);
+        background-color: var(--theme-card-shadow-color);
         transform: translate(var(--card-clicked-move-x), var(--card-clicked-move-y));
         position: absolute;
         width: 100%;
@@ -45,7 +45,7 @@
     }
 
     .bp-card-border {
-        background-color: var(--card-border-color);
+        background-color: var(--theme-card-border-color);
         padding: 2px;
         height: calc(100% + 1px);
         width: calc(100% + 1px);
@@ -61,7 +61,7 @@
         height: 100%;
         z-index: 2;
         padding: 5px 30px 5px 30px;
-        background-color: var(--card-background-color);
+        background-color: var(--theme-card-background-color);
         position: relative;
         clip-path: polygon(calc(100% - 38px) 0, calc(100%) 38px, calc(100%) 100%, 0 100%, 0 0);
         box-sizing: border-box; // Include padding and borders in width

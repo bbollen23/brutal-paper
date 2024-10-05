@@ -11,7 +11,7 @@
     input.bp-input {
         width: auto;
         height: 40px;
-        border: 1px solid black;
+        border: 1px solid var(--theme-border-color);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -20,7 +20,7 @@
         border-radius: 2px;
 
         &:focus {
-            border: 2px solid black;
+            border: 2px solid var(--theme-border-color);
         }
 
         &.invalid {

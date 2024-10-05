@@ -3,12 +3,12 @@ import "./Button.scss";
 
 export interface ButtonProps {
     label: string;
-    backgroundColor?: string;
     size?: string;
     onClick?: () => void;
     style?: React.CSSProperties;
     flat?: boolean;
     disabled?: boolean;
+    theme?: 'primary' | 'confirm' | 'cancel' | 'previous' | 'delete';
 }
 
 interface ClassNameProps {
@@ -16,9 +16,10 @@ interface ClassNameProps {
     isClicked: boolean;
     flat?: boolean;
     disabled?: boolean;
+    theme?: 'primary' | 'confirm' | 'cancel' | 'previous' | 'delete';
 }
 
-const getClassNames = ({ size, isClicked, flat, disabled }: ClassNameProps): string => {
+const getClassNames = ({ theme, size, isClicked, flat, disabled }: ClassNameProps): string => {
     let className = 'bp-btn-container';
     if (size == 'sm') {
         className = `${className} bp-btn-small`
@@ -32,12 +33,23 @@ const getClassNames = ({ size, isClicked, flat, disabled }: ClassNameProps): str
     if (isClicked) {
         className = `${className} clicked`
     }
+
+    if (theme == 'delete') {
+        className = `${className} delete`
+    }
+    if (theme == 'cancel') {
+        className = `${className} cancel`
+    }
+    if (theme === 'confirm') {
+        className = `${className} confirm`
+
+    }
     return className
 }
 
 
 
-const Button = ({ disabled, size, backgroundColor, style, label, onClick, flat }: ButtonProps): JSX.Element => {
+const Button = ({ theme, disabled, size, style, label, onClick, flat }: ButtonProps): JSX.Element => {
 
     const [isClicked, setIsClicked] = React.useState<boolean>(false);
 
@@ -50,15 +62,15 @@ const Button = ({ disabled, size, backgroundColor, style, label, onClick, flat }
         }
     }
 
-    const buttonClasses = getClassNames({ size, isClicked, flat, disabled });
+    const buttonClasses = getClassNames({ theme, size, isClicked, flat, disabled });
 
     return (
         <div style={style} className="bp-btn-wrapper">
             <div onClick={handleClick} className={buttonClasses}>
-                <div className="bp-btn" style={{ backgroundColor }}>
+                <div className="bp-btn">
                     {label}
                 </div>
-                {!flat && !disabled ? <div className="bp-btn-shadow"></div> : null}
+                {!flat && !disabled && !(theme === 'cancel') ? <div className="bp-btn-shadow"></div> : null}
             </div>
 
         </div>

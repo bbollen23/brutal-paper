@@ -14,7 +14,7 @@
 
     &.open {
         pointer-events: all;
-        background-color: hsla(var(--gray-300), 0.5);
+        background-color: var(--theme-modal-backdrop-color);
 
         .bp-modal-container {
             top: calc(50vh - 300px);

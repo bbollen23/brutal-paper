@@ -118,9 +118,6 @@
             border-right: none;
         }
 
-        // --theme-border-color: hsl(var(--gray-200));
-
-
-        --theme-header-background-color: white;
+        --theme-header-background-color: var(--theme-background-color);
     }
 }

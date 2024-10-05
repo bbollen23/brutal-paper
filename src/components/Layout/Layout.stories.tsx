@@ -12,6 +12,9 @@ import Input from "../Input";
 import { Sidebar, SidebarHeader, SidebarItem, SidebarSectionTitle } from "../Sidebar";
 import Scrollable from "../Scrollable";
 import Divider from "../Divider";
+import Tabs from "../Tabs";
+import LoadingOverlay from "../Loading/LoadingOverlay";
+import { LoadingIcon } from "../Loading";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -189,6 +192,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
     const [password, setPassword] = useState<string>('');
 
 
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
         if (key === 'username') {
             setUsername(event.target.value);
@@ -200,10 +204,33 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
     const handleModalClose = () => {
         setUsername('');
         setPassword('');
+        setLoading(false);
+    }
+
+    const [darkMode, setDarkMode] = useState<boolean>(false);
+
+    const handleDarkMode = () => {
+        let storyBookRoot = document.getElementById('storybook-root')
+
+        if (storyBookRoot) {
+            if (darkMode === false) {
+                storyBookRoot.classList.add('dark-mode')
+            } else {
+                storyBookRoot.classList.remove('dark-mode')
+            }
+        }
+
+        setDarkMode(prev => !prev);
+    }
+
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const handleLogin = () => {
+        setLoading(true);
     }
 
     return (
-        <Layout className='sidebar container smooth no-right-margin no-footer'>
+        <Layout className='sidebar container no-right-margin no-footer'>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -214,6 +241,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                     <Button label="Sign Up" />
                     <Button onClick={toggleModal} label="Login" />
                     <Icon icon='bi bi-gear' onClick={toggleDrawer} />
+                    <Icon icon='bi bi-moon' onClick={handleDarkMode} />
                 </HeaderGroup>
             </Header>
             <Body>
@@ -228,7 +256,8 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 actions={
                     <>
                         <Button flat label='Cancel' />
-                        <Button disabled={!(username !== '' && customValidator(password))} label='Log In' onClick={toggleModal} />
+                        <Button disabled={!(username !== '' && customValidator(password))} label='Log In' onClick={handleLogin} />
+                        <LoadingIcon visible={loading} />
                     </>
                 }>
                 <ModalHeader
@@ -245,6 +274,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                             label='Username'
                             errorMessage='Oh no!'
                             validator={customValidatorUsername}
+                            placeholder="Your Username"
                         />
                         <Input
                             onChange={(e) => handleInputChange(e, 'password')} value={password}
@@ -252,6 +282,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                             errorMessage="Password must be at least 8 characters in length"
                             validator={customValidator}
                             type='password'
+                            placeholder="Your Password"
                         />
                     </div>
                 </ModalContent>
@@ -343,6 +374,14 @@ SidebarLayout.args = {
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
                     </Card>
+                    <Tabs
+                        tabData={[
+                            { label: 'Item 1', 'content': <div>Test1</div> },
+                            { label: 'Item 2', 'content': <div>Test 2</div> },
+                            { label: 'Item 3', 'content': <div>Test 3</div> }
+
+                        ]}
+                    />
                 </div>
             </Scrollable>
 

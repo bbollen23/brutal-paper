@@ -27,10 +27,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    cursor: pointer;
 
 
     &:hover:not(.highlighted) {
-        background-color: hsla(var(--gray-300), 0.7);
+        background-color: var(--theme-item-hover-color);
 
         .bp-sidebar-item-content {
             text-decoration: underline;
@@ -38,7 +39,7 @@
     }
 
     &.highlighted {
-        background-color: hsla(var(--gray-300), 0.7);
+        background-color: var(--theme-item-hover-color);
 
         .bp-sidebar-item-content {
             font-weight: bold;

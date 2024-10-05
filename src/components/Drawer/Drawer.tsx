@@ -10,9 +10,10 @@ export interface DrawerProps {
     backgroundColor?: string;
     style?: React.CSSProperties;
     closeOnOutside?: boolean;
+    alignment?: 'left' | 'right';
 }
 
-const Drawer = ({ closeOnOutside, children, opened, onChange, style, backgroundColor }: DrawerProps): JSX.Element => {
+const Drawer = ({ alignment, closeOnOutside, children, opened, onChange, style, backgroundColor }: DrawerProps): JSX.Element => {
 
     const [isOpen, setIsOpen] = useState<boolean>(opened ?? false);
 
@@ -42,7 +43,7 @@ const Drawer = ({ closeOnOutside, children, opened, onChange, style, backgroundC
                 className={`bp-drawer-wrapper ${isOpen ? 'open' : 'closed'}`}
             >
                 <div
-                    className={`bp-drawer-container ${isOpen ? 'open' : 'closed'}`}
+                    className={`bp-drawer-container ${isOpen ? 'open' : 'closed'} alignment-${alignment === 'right' ? 'right' : 'left'}`}
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div

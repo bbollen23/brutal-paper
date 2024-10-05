@@ -9,7 +9,9 @@ export interface SidebarProps {
 const Sidebar = ({ children }: SidebarProps): JSX.Element => {
     return (
         <div className="bp-sidebar-container">
-
+            <div className="bp-sidebar-content">
+                {children}
+            </div>
         </div>
     )
 }

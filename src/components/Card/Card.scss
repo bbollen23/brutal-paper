@@ -1,5 +1,6 @@
 .bp-card-container {
     position: relative;
+    margin: 5px;
 
     &.bp-card-sm {
         .bp-card {
@@ -73,6 +74,8 @@
 
             .bp-card-actions {
                 margin-top: 10px;
+                flex: 1;
+
             }
         }
 

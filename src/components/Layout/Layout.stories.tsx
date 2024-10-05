@@ -9,8 +9,9 @@ import Button from "../Button";
 import Body from "../Body";
 import { Modal, ModalHeader, ModalContent } from "../Modal";
 import Input from "../Input";
-import { Sidebar } from "../Sidebar";
+import { Sidebar, SidebarHeader, SidebarItem, SidebarSectionTitle } from "../Sidebar";
 import Scrollable from "../Scrollable";
+import Divider from "../Divider";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -134,7 +135,7 @@ export const MuView = Template.bind({});
 MuView.args = {
     children:
         <>
-            <div style={{ width: '500px' }}>
+            <div style={{ marginLeft: '20px', width: '500px' }}>
                 <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
                     <>
                         <Button flat label='Cancel' size="sm" />
@@ -163,6 +164,12 @@ MuView.args = {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
 
+
+    const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
+
+    const toggleDrawer = () => {
+        setDrawerOpened((prev) => !prev);
+    }
 
     const customValidator = (value: string) => {
         return value.length > 8;
@@ -196,7 +203,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
     }
 
     return (
-        <Layout className='sidebar'>
+        <Layout className='sidebar container smooth no-right-margin no-footer'>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -206,10 +213,10 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 <HeaderGroup alignment="right">
                     <Button label="Sign Up" />
                     <Button onClick={toggleModal} label="Login" />
+                    <Icon icon='bi bi-gear' onClick={toggleDrawer} />
                 </HeaderGroup>
             </Header>
             <Body>
-
                 {args.children}
             </Body>
             <Modal
@@ -249,7 +256,64 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                     </div>
                 </ModalContent>
             </Modal>
-            <Sidebar />
+
+            <Sidebar>
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+                <Divider />
+                <SidebarSectionTitle>
+                    Section Title
+                </SidebarSectionTitle>
+                <SidebarItem icon='bi bi-house'>Item 1</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
+                <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
+
+            </Sidebar>
+            <Drawer alignment='right' opened={drawerOpened} closeOnOutside onChange={setDrawerOpened} >
+                <DrawerHeader title="Settings" closeButton />
+                <DrawerItem icon="bi bi-house" label="Home" />
+                <DrawerItem icon="bi bi-bar-chart-steps" label="Projects" />
+                <DrawerItem icon="bi bi-activity" label="Research" />
+            </Drawer>
         </Layout>
 
     );
@@ -260,30 +324,29 @@ export const SidebarLayout = SidebarTemplate.bind({});
 SidebarLayout.args = {
     children:
         <>
-            <Scrollable width='100%' height='300px' style={{ border: '1px solid black' }}>
-                <div style={{ width: '2000px', backgroundColor: 'lightcoral' }}>
-                    <div>ITem 1</div>
-                    <div>Item 2</div>
+            <Scrollable width='100%' height='100%'>
+                <div style={{ width: 'auto' }}>
+                    <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
+                        <>
+                            <Button flat label='Cancel' size="sm" />
+                            <Button label='Okay' size="sm" />
+                        </>
+                    }>
+                        A cell microscopy visualization platform for large-scale cell data analysis
+
+                    </Card>
+                    <Card className='bp-mt-md' size="sm" title="Loon" actions={
+                        <>
+                            <Button flat label='Cancel' size="sm" />
+                            <Button label='Okay' size="sm" />
+                        </>
+                    }>
+                        A cell microscopy visualization platform for large-scale cell data analysis
+                    </Card>
                 </div>
             </Scrollable>
 
-            {/* <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
-                    <>
-                        <Button flat label='Cancel' size="sm" />
-                        <Button label='Okay' size="sm" />
-                    </>
-                }>
-                    A cell microscopy visualization platform for large-scale cell data analysis
 
-                </Card>
-                <Card className='bp-mt-md' size="sm" title="Loon" actions={
-                    <>
-                        <Button flat label='Cancel' size="sm" />
-                        <Button label='Okay' size="sm" />
-                    </>
-                }>
-                    A cell microscopy visualization platform for large-scale cell data analysis
-                </Card> */}
 
         </>
 

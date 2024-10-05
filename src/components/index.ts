@@ -7,6 +7,7 @@ export { Header, HeaderTitle, HeaderItem } from './Header';
 export { default as Body } from './Body';
 export { Modal, ModalHeader, ModalContent } from './Modal';
 export { default as Input } from './Input';
-export { Sidebar } from './Sidebar';
+export { Sidebar, SidebarHeader, SidebarItem, SidebarSectionTitle } from './Sidebar';
 export { default as Scrollable } from './Scrollable';
 export { default as Divider } from './Divider';
+export { default as Tabs } from './Tabs';

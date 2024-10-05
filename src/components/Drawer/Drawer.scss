@@ -72,10 +72,20 @@ $bp-drawer-width: 350px;
 
     &.open {
         left: 0;
+
+        &.alignment-right {
+            left: auto;
+            right: 0;
+        }
     }
 
     &.closed {
         left: calc(-1 * $bp-drawer-width - 100px);
+
+        &.alignment-right {
+            left: auto;
+            right: calc(-1 * $bp-drawer-width - 100px);
+        }
     }
 
 }

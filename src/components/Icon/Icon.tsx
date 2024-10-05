@@ -10,9 +10,11 @@ export interface IconProps {
     style?: React.CSSProperties;
     size?: 'xs' | 'sm' | 'md' | 'lg';
     type?: 'shading' | 'move' | 'shading-and-move';
+    iconStyle?: React.CSSProperties;
+    labelStyle?: React.CSSProperties
 }
 
-const Icon = ({ icon, label, style, size, type, onClick }: IconProps): JSX.Element => {
+const Icon = ({ iconStyle, labelStyle, icon, label, style, size, type, onClick }: IconProps): JSX.Element => {
     const classSize = size ? size : 'md';
     let classType = 'shading-type';
     if (type) {
@@ -25,8 +27,8 @@ const Icon = ({ icon, label, style, size, type, onClick }: IconProps): JSX.Eleme
 
     return (
         <div onClick={onClick} style={style} className={`bp-action-icon ${classSize} ${classType}`}>
-            <i className={`${icon}`}></i>
-            {label ? <span>{label}</span> : null}
+            <i style={iconStyle} className={`${icon}`}></i>
+            {label ? <span style={labelStyle}>{label}</span> : null}
         </div>
     )
 }

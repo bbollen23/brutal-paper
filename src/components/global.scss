@@ -351,6 +351,7 @@ $transition-delay-3: 0.5s;
 
     // Paper Theme
     --theme-background-color: hsl(var(--zinc-50));
+    --theme-background-color: white;
     --theme-text-color: hsl(var(--gray-800));
     --theme-header-background-color: hsl(var(--zinc-100));
     --theme-header-text-color: hsl(var(--gray-800));
@@ -361,8 +362,6 @@ $transition-delay-3: 0.5s;
     --theme-input-placeholder-color: hsl(var(--gray-400));
     //Fonts
     --theme-font-family-title: var(--font-family-inter);
-    // --theme-font-family-title: var(--font-family-ibm-plex-mono);
-
     --theme-font-family-text: var(--font-family-inconsolata);
 
     --background-color: #{$background-color-light};
@@ -392,6 +391,7 @@ $transition-delay-3: 0.5s;
 
     font-family:var(--theme-font-family-text)
 }
+
 
 .flex-row {
     flex-direction: row !important;

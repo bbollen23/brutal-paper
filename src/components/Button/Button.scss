@@ -1,9 +1,11 @@
 .bp-btn-container {
     width: auto;
+    min-width: 100px;
     position: relative;
 
     &.bp-btn-small {
-        width: 150px;
+        width: 70px;
+        min-width: 70px;
     }
 
     &.flat .bp-btn {

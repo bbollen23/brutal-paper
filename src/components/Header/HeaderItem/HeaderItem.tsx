@@ -16,8 +16,10 @@ const HeaderItem = ({ onClick, label }: HeaderItemProps): JSX.Element => {
 
     return (
         <div onClick={handleOnClick} className='bp-header-item'>
-            <div className='bp-label-container'>{label}<div className="bp-line"></div></div>
-
+            <div className='bp-label-container'>
+                {label}
+                <div className="bp-line"></div>
+            </div>
         </div>
     )
 }

@@ -6,7 +6,6 @@
     width: 100%;
     display: grid;
     grid-template-columns: var(--layout-margin) auto 1fr 1fr var(--layout-margin);
-    gap: 20px;
     flex: 1;
     box-sizing: border-box;
     padding: 10px 0px 10px 0px;
@@ -17,7 +16,7 @@
     font-family: var(--theme-font-family-title);
     font-weight: bold;
     grid-column: 2;
-    margin-right: 10px;
+    margin-right: 40px;
 }
 
 
@@ -74,4 +73,8 @@
 .bp-header-group {
     max-width: max-content;
     gap: 40px;
+
+    &.right {
+        justify-self: flex-end;
+    }
 }

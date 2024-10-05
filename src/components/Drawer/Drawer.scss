@@ -38,22 +38,6 @@ $bp-drawer-width: 350px;
         margin-bottom: 20px;
         box-sizing: border-box;
         padding:0px $bp-drawer-padding-left;
-
-        .bp-drawer-close {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.1s ease-in;
-
-            &:hover {
-                background-color: rgba(81, 81, 81, 0.1);
-            }
-        }
     }
 
 
@@ -73,29 +57,8 @@ $bp-drawer-width: 350px;
         transition: 0.1s ease-out;
 
         &:hover {
-            border-right: 1px solid var(--theme-border-color);
-            border-top: 1px solid var(--theme-border-color);
-            border-bottom: 1px solid var(--theme-border-color);
-            transform: translateX(10px);
-        }
-
-        &:after,
-        &:before {
-            content: '';
-            width: calc(100% + 1px);
-            background-color: inherit;
-            position: absolute;
-            height: 2px;
-            left: -10px;
-            transition: none;
-        }
-
-        &:after {
-            bottom: -1px;
-        }
-
-        &:before {
-            top: -1px;
+            text-decoration: underline;
+            background-color: hsla(var(--gray-300), 0.7);
         }
 
         i {
@@ -107,19 +70,12 @@ $bp-drawer-width: 350px;
         margin: 0px 20px;
     }
 
-
-
-
-
-
     &.open {
         left: 0;
-        /* When open, slide in */
     }
 
     &.closed {
         left: calc(-1 * $bp-drawer-width - 100px);
-        /* When closed, slide out */
     }
 
 }
@@ -139,9 +95,10 @@ $bp-drawer-width: 350px;
         width: 0px;
     }
 
-
     &.open {
         pointer-events: all;
         background-color: hsla(var(--gray-300), 0.5);
     }
+
+
 }

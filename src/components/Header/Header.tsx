@@ -2,12 +2,13 @@ import React from 'react';
 import './Header.scss';
 
 export interface HeaderProps {
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    stretch?: boolean
 }
 
-const Header = ({ children }: HeaderProps): JSX.Element => {
+const Header = ({ children, stretch }: HeaderProps): JSX.Element => {
     return (
-        <div className="bp-header">
+        <div className={stretch ? `bp-header stretch` : `bp-header`}>
             {children}
         </div>
     )

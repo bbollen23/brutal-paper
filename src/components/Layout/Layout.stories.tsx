@@ -9,6 +9,8 @@ import Button from "../Button";
 import Body from "../Body";
 import { Modal, ModalHeader, ModalContent } from "../Modal";
 import Input from "../Input";
+import { Sidebar } from "../Sidebar";
+import Scrollable from "../Scrollable";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -61,7 +63,7 @@ const Template: ComponentStory<typeof Layout> = (args) => {
     }
 
     return (
-        <Layout type='d-overlap'>
+        <Layout className='drawer drawer-overlap'>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -135,8 +137,8 @@ MuView.args = {
             <div style={{ width: '500px' }}>
                 <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
                     <>
-                        <Button flat label='Cancel' />
-                        <Button label='Okay' />
+                        <Button flat label='Cancel' size="sm" />
+                        <Button label='Okay' size="sm" />
                     </>
                 }>
                     A cell microscopy visualization platform for large-scale cell data analysis
@@ -144,8 +146,8 @@ MuView.args = {
                 </Card>
                 <Card className='bp-mt-md' size="sm" title="Loon" actions={
                     <>
-                        <Button flat label='Cancel' />
-                        <Button label='Okay' />
+                        <Button flat label='Cancel' size="sm" />
+                        <Button label='Okay' size="sm" />
                     </>
                 }>
                     A cell microscopy visualization platform for large-scale cell data analysis
@@ -157,6 +159,137 @@ MuView.args = {
 
 
 };
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
+
+
+    const customValidator = (value: string) => {
+        return value.length > 8;
+    };
+
+    const customValidatorUsername = (value: string) => {
+        return value.length > 2;
+    };
+
+    const [modalOpened, setModalOpened] = useState<boolean>(false);
+
+    const toggleModal = () => {
+        setModalOpened((prev) => !prev);
+    }
+
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
+        if (key === 'username') {
+            setUsername(event.target.value);
+        } else {
+            setPassword(event.target.value);
+        }
+    };
+
+    const handleModalClose = () => {
+        setUsername('');
+        setPassword('');
+    }
+
+    return (
+        <Layout className='sidebar'>
+            <Header>
+                <HeaderTitle>MuView</HeaderTitle>
+                <HeaderGroup>
+                    <HeaderItem label="Albums"></HeaderItem>
+                    <HeaderItem label="Community"></HeaderItem>
+                </HeaderGroup>
+                <HeaderGroup alignment="right">
+                    <Button label="Sign Up" />
+                    <Button onClick={toggleModal} label="Login" />
+                </HeaderGroup>
+            </Header>
+            <Body>
+
+                {args.children}
+            </Body>
+            <Modal
+                style={{ maxWidth: '500px' }}
+                opened={modalOpened}
+                setOpened={setModalOpened}
+                onClose={handleModalClose}
+                closeOnOutside
+                actions={
+                    <>
+                        <Button flat label='Cancel' />
+                        <Button disabled={!(username !== '' && customValidator(password))} label='Log In' onClick={toggleModal} />
+                    </>
+                }>
+                <ModalHeader
+                    closeButton={true}
+                    title='Please Log In'
+                />
+                <ModalContent style={{ marginBottom: '20px' }}>
+                    <div className="flex-col gap-20">
+                        <div style={{ fontSize: '1.2rem' }}>
+                            Please enter in your credentials.
+                        </div>
+                        <Input
+                            onChange={(e) => handleInputChange(e, 'username')} value={username}
+                            label='Username'
+                            errorMessage='Oh no!'
+                            validator={customValidatorUsername}
+                        />
+                        <Input
+                            onChange={(e) => handleInputChange(e, 'password')} value={password}
+                            label='Password'
+                            errorMessage="Password must be at least 8 characters in length"
+                            validator={customValidator}
+                            type='password'
+                        />
+                    </div>
+                </ModalContent>
+            </Modal>
+            <Sidebar />
+        </Layout>
+
+    );
+};
+
+export const SidebarLayout = SidebarTemplate.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+SidebarLayout.args = {
+    children:
+        <>
+            <Scrollable width='100%' height='300px' style={{ border: '1px solid black' }}>
+                <div style={{ width: '2000px', backgroundColor: 'lightcoral' }}>
+                    <div>ITem 1</div>
+                    <div>Item 2</div>
+                </div>
+            </Scrollable>
+
+            {/* <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
+                    <>
+                        <Button flat label='Cancel' size="sm" />
+                        <Button label='Okay' size="sm" />
+                    </>
+                }>
+                    A cell microscopy visualization platform for large-scale cell data analysis
+
+                </Card>
+                <Card className='bp-mt-md' size="sm" title="Loon" actions={
+                    <>
+                        <Button flat label='Cancel' size="sm" />
+                        <Button label='Okay' size="sm" />
+                    </>
+                }>
+                    A cell microscopy visualization platform for large-scale cell data analysis
+                </Card> */}
+
+        </>
+
+
+};
+
 
 
 

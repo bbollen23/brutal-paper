@@ -21,15 +21,15 @@ const Modal = ({ onClose, children, opened, closeOnOutside, setOpened, actions, 
     useEffect(() => {
         setIsOpen(opened ?? false);
 
+        if (!opened && onClose) {
+            onClose();
+        }
     }, [opened])
 
     const closeModal = () => {
         setIsOpen(opened ?? false);
         if (setOpened) {
             setOpened(false);
-        }
-        if (onClose) {
-            onClose();
         }
     }
 
@@ -38,6 +38,7 @@ const Modal = ({ onClose, children, opened, closeOnOutside, setOpened, actions, 
             closeModal();
         }
     }
+
 
 
     return (

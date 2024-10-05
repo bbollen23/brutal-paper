@@ -13,7 +13,7 @@ const HeaderGroup = ({ dense, alignment, children }: HeaderGroupProps): JSX.Elem
     return (
         <div className={
             `bp-header-group flex-row align-center 
-            ${classAlignment === 'left' ? 'self-start' : 'self-end'} ${classDense ? 'gap-10' : 'gap-30'}`
+            ${classAlignment === 'left' ? 'left' : 'right'} ${classDense ? 'gap-10' : 'gap-30'}`
         }>
             {children}
         </div>

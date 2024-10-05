@@ -5,32 +5,108 @@
     color: var(--theme-text-color);
     grid-template-rows: 80px 1fr 40px;
     grid-template-columns: var(--layout-margin) 1fr var(--layout-margin);
-    gap: 20px;
-    height: 100vh;
+    min-height: 100vh;
+    max-width: 100vw;
     width: 100%;
     box-sizing: border-box;
     position: relative;
     display: grid;
 
-    &.d-overlap {
+    .bp-header {
+        grid-row: 1;
+        grid-column: 1 / span all;
+    }
+
+    .bp-body {
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .bp-footer {
+        grid-row: 3;
+        grid-column: 1 /span 3;
+    }
+
+
+    &.drawer.drawer-overlap {
         .bp-drawer-wrapper {
             position: absolute;
             grid-row: 1 / span 3;
         }
+    }
 
-        .bp-header {
-            grid-row: 1;
-            grid-column: 1 /span 3;
+    &.sidebar {
+
+        grid-template-columns: 40px 250px 1fr 200px 40px;
+
+        .bp-sidebar-container {
+            grid-column: 1 / span 2;
+            grid-row: 2 / span 2;
         }
 
         .bp-body {
-            grid-row: 2;
-            grid-column: 2;
+            grid-column: 3;
         }
 
-        .bp-footer {
-            grid-row: 3;
-            grid-column: 1 /span 3;
+        .bp-header {
+            grid-template-columns: 40px 250px 1fr 200px 40px;
+
+            .bp-header-group.left {
+                grid-column: 3;
+            }
+
+            .bp-header-group.right {
+                grid-column: 4;
+            }
         }
+
+
+
+
+        // Conatinerized
+        &.container {
+            grid-template-columns: 40px 250px 1fr 600px 1fr 200px 40px;
+
+            .bp-body {
+                grid-column: 4;
+            }
+
+            .bp-header {
+
+                grid-template-columns: 40px 250px 1fr 600px 1fr 200px 40px;
+
+                // .bp-header-title {
+                //     grid-column: 2 / span 2;
+                //     margin-right: 0;
+                // }
+
+                .bp-header-group.left {
+                    grid-column: 4;
+                }
+
+                .bp-header-group.right {
+                    grid-column: 6;
+                }
+            }
+        }
+
+
+
+
+    }
+
+    &.smooth {
+        .bp-header {
+            border-bottom: none;
+        }
+
+        .bp-sidebar-container {
+            border-right: none;
+        }
+
+        // --theme-border-color: hsl(var(--gray-200));
+
+
+        --theme-header-background-color: white;
     }
 }

@@ -3,12 +3,12 @@ import './Layout.scss';
 
 export interface LayoutProps {
     children: React.ReactNode;
-    type?: string
+    className: string
 }
 
-const Layout = ({ children, type }: LayoutProps): JSX.Element => {
+const Layout = ({ children, className }: LayoutProps): JSX.Element => {
     return (
-        <div className={type ? `bp-layout ${type}` : 'bp-layout'}>
+        <div className={className ? `bp-layout ${className}` : 'bp-layout'}>
             {children}
         </div>)
 }

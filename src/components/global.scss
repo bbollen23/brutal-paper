@@ -1,45 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
-
-$background-color-light: #FFF6EA;
-// $background-color-light: white;
-$off-background-color-light: #FEECB3;
-$text-color-light: black;
-$card-border-color-light: black;
-// $card-background-color-light: $off-background-color-light;
-$card-background-color-light: white;
-$card-shadow-color-light: rgba(95, 94, 94, 0.4);
-$header-color-light: #fff9f1;
-$hover-color-light: #ebedf0;
-
-$background-color-dark: #383838;
-$off-background-color-dark: #000000;
-$text-color-dark: white;
-$card-border-color-dark: #000000;
-$card-background-color-dark: #292929;
-$card-shadow-color-dark: rgba(25, 25, 25, 0.5);
-$header-color-dark: #323232;
-$hover-color-dark: #444950;
-
 $card-hover-move-x: 20px;
 $card-hover-move-y: -5px;
 $card-clicked-move-x: 8px;
 $card-clicked-move-y: 8px;
 
-$font-family-title: 'Roboto Condensed', sans-serif;
-// $font-family-title: 'IBM Plex Mono', monospace;
-// $font-family-title: "Source Code Pro", monospace;
-// $font-family-title: "Inconsolata", monospace;
-$font-family-text: 'Inter', system-ui;
-// $font-family-text: "Inconsolata", monospace;
-$button-width: 100px;
-$small-button-width: 70px;
-$toggle-button-width: 40px;
-
-
-$transition-delay-1: 0s;
-$transition-delay-2: 0.3s;
-$transition-delay-3: 0.5s;
 
 
 
@@ -341,15 +306,7 @@ $transition-delay-3: 0.5s;
     //Fonts
     --theme-font-family-title: var(--font-family-inter);
     --theme-font-family-text: var(--font-family-inconsolata);
-
-    --background-color: #{$background-color-light};
-    --text-color: #{$text-color-light};
-    --off-background-color: #{$off-background-color-light};
-    --card-border-color: #{$card-border-color-light};
-    --card-background-color:#{$card-background-color-light};
-    --card-shadow-color: #{$card-shadow-color-light};
-    --header-color: #{$header-color-light};
-    --hover-color: #{$hover-color-light};
+    ;
 
     --card-clicked-move-x: #{$card-clicked-move-x};
     --card-clicked-move-y: #{$card-clicked-move-y};
@@ -358,6 +315,10 @@ $transition-delay-3: 0.5s;
 
     font-family: var(--theme-font-family-text);
 
+
+    /*-------------------------------------------------------------*/
+    /*------------------------- LIGHT THEME -----------------------*/
+    /*-------------------------------------------------------------*/
 
     //Light Paper Theme
     --theme-background-color-light: white;
@@ -372,8 +333,27 @@ $transition-delay-3: 0.5s;
     --theme-modal-backdrop-color-light: hsla(var(--gray-400), 0.5);
     --theme-item-hover-color-light: hsla(var(--gray-300), 0.7);
 
+
+    // Light Unused
     --theme-link-color-light: hsl(var(--blue-600));
     --theme-link-hover-color-light: hsl(var(--blue-700));
+
+    //Light Btn Themes
+    --theme-btn-delete-background-color-light: hsl(0, 86%, 69%);
+    --theme-btn-confirm-background-color-light: hsl(var(--green-500));
+    --theme-btn-confirm-text-color-light: hsl(var(--gray-100));
+    --theme-btn-cancel-text-color-light: hsl(var(--red-700));
+    --theme-btn-cancel-hover-color-light: hsla(var(--red-700), 0.3);
+    --theme-btn-previous-hover-color-light: hsla(var(--gray-300), 0.5);
+    --theme-btn-primary-background-color-light: hsl(var(--blue-300));
+
+    --theme-item-warning-light: hsl(var(--yellow-500));
+
+
+
+    /*-------------------------------------------------------------*/
+    /*-------------------------- DARK THEME -----------------------*/
+    /*-------------------------------------------------------------*/
 
     //Dark Paper Theme
     --theme-background-color-dark: hsl(var(--gray-900));
@@ -388,10 +368,27 @@ $transition-delay-3: 0.5s;
     --theme-modal-backdrop-color-dark: hsla(var(--gray-800), 0.7);
     --theme-item-hover-color-dark: hsla(var(--gray-700), 0.7);
 
-
+    // Dark Unused
     --theme-link-color-dark: hsl(var(--blue-400));
     --theme-link-hover-color-dark: hsl(var(--blue-300));
 
+    // Dark Btn Themes
+    --theme-btn-delete-background-color-dark: hsl(var(--red-800));
+    --theme-btn-confirm-background-color-dark: hsl(var(--green-700));
+    --theme-btn-confirm-text-color-dark: hsl(var(--gray-100));
+    --theme-btn-cancel-text-color-dark: hsl(var(--red-300));
+    --theme-btn-cancel-hover-color-dark: hsla(var(--red-400), 0.3);
+    --theme-btn-previous-hover-color-dark: hsla(var(--gray-600), 0.5);
+    --theme-btn-primary-background-color-dark: hsl(var(--blue-700));
+
+    --theme-item-warning-dark: hsl(var(--yellow-600));
+
+
+
+
+    /*-------------------------------------------------------------*/
+    /*---------------------- INITIALIZE THEME ---------------------*/
+    /*-------------------------------------------------------------*/
 
 
     // Overall Theme -- Initialize as Light
@@ -407,20 +404,26 @@ $transition-delay-3: 0.5s;
     --theme-modal-backdrop-color: var(--theme-modal-backdrop-color-light);
     --theme-item-hover-color: var(--theme-item-hover-color-light);
 
-
+    //Unused
     --theme-link-color: var(--theme-link-color-light);
     --theme-link-hover-color: var(--theme-link-hover-color-light);
 
+    // Btn
+    --theme-btn-delete-background-color: var(--theme-btn-delete-background-color-light);
+    --theme-btn-delete-text-color: var(--theme-btn-delete-text-color-light);
+    --theme-btn-confirm-background-color: var(--theme-btn-confirm-background-color-light);
+    --theme-btn-confirm-text-color: var(--theme-btn-confirm-text-color-light);
+    --theme-btn-cancel-text-color: var(--theme-btn-cancel-text-color-light);
+    --theme-btn-cancel-hover-color: var(--theme-btn-cancel-hover-color-light);
+    --theme-btn-previous-hover-color: var(--theme-btn-previous-hover-color-light);
+    --theme-btn-primary-background-color: var(--theme-btn-primary-background-color-light);
+
+    --theme-item-warning: var(--theme-item-warning-light);
+    // --theme-item-info: var(--theme-item-info-light);
+
 
     .dark-mode {
-        --background-color: #{$background-color-dark};
-        --text-color: #{$text-color-dark};
-        --off-background-color: #{$off-background-color-dark};
-        --card-border-color: #{$card-border-color-dark};
-        --card-background-color:#{$card-background-color-dark};
-        --card-shadow-color: #{$card-shadow-color-dark};
-        --header-color: #{$header-color-dark};
-        --hover-color: #{$hover-color-dark};
+
 
         --theme-background-color: var(--theme-background-color-dark);
         --theme-text-color: var(--theme-text-color-dark);
@@ -434,10 +437,24 @@ $transition-delay-3: 0.5s;
         --theme-modal-backdrop-color: var(--theme-modal-backdrop-color-dark);
         --theme-item-hover-color: var(--theme-item-hover-color-dark);
 
-
-
+        //Unused
         --theme-link-color: var(--theme-link-color-dark);
         --theme-link-hover-color: var(--theme-link-hover-color-dark);
+
+
+        // Btn
+        --theme-btn-delete-background-color: var(--theme-btn-delete-background-color-dark);
+        --theme-btn-delete-text-color: var(--theme-btn-delete-text-color-dark);
+        --theme-btn-confirm-background-color: var(--theme-btn-confirm-background-color-dark);
+        --theme-btn-confirm-text-color: var(--theme-btn-confirm-text-color-dark);
+        --theme-btn-cancel-text-color: var(--theme-btn-cancel-text-color-dark);
+        --theme-btn-cancel-hover-color: var(--theme-btn-cancel-hover-color-dark);
+        --theme-btn-previous-hover-color: var(--theme-btn-previous-hover-color-dark);
+        --theme-btn-primary-background-color: var(--theme-btn-primary-background-color-dark);
+
+        --theme-item-warning: var(--theme-item-warning-dark);
+        // --theme-item-info: var(--theme-item-info-dark);
+
     }
 
 }

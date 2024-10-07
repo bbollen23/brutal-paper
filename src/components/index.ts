@@ -12,3 +12,5 @@ export { default as Scrollable } from './Scrollable';
 export { default as Divider } from './Divider';
 export { default as Tabs } from './Tabs';
 export { LoadingIcon, LoadingOverlay } from './Loading';
+export { default as Notification } from './Notification';
+export { default as Banner } from './Banner';

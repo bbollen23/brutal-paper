@@ -15,6 +15,8 @@ import Divider from "../Divider";
 import Tabs from "../Tabs";
 import LoadingOverlay from "../Loading/LoadingOverlay";
 import { LoadingIcon } from "../Loading";
+import { NotificationProvider, useNotification, NotificationType } from "../Notification/NotificationContext";
+import Banner from "../Banner";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -167,7 +169,7 @@ MuView.args = {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
 
-
+    const { notify } = useNotification();
     const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
 
     const toggleDrawer = () => {
@@ -209,6 +211,10 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
 
     const [darkMode, setDarkMode] = useState<boolean>(false);
 
+    const notifyTypes: NotificationType['type'][] = ['alert', 'info', 'warning', 'success']
+    const notifyMessages: string[] = ['Danger Danger! Oh no!!', 'Just letting you know', 'Be careful!', 'Sweet!']
+    const [notifyIndex, setNotifyIndex] = useState<number>(0);
+
     const handleDarkMode = () => {
         let storyBookRoot = document.getElementById('storybook-root')
 
@@ -229,6 +235,15 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
         setLoading(true);
     }
 
+    const handleNotify = () => {
+        notify({
+            message: notifyMessages[notifyIndex],
+            type: notifyTypes[notifyIndex]
+        })
+
+        setNotifyIndex(prev => (prev + 1) % 4);
+    }
+
     return (
         <Layout className='sidebar container no-right-margin no-footer'>
             <Header>
@@ -238,7 +253,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                     <HeaderItem label="Community"></HeaderItem>
                 </HeaderGroup>
                 <HeaderGroup alignment="right">
-                    <Button label="Sign Up" />
+                    <Button label="Sign Up" onClick={handleNotify} />
                     <Button onClick={toggleModal} label="Login" />
                     <Icon icon='bi bi-gear' onClick={toggleDrawer} />
                     <Icon icon='bi bi-moon' onClick={handleDarkMode} />
@@ -347,6 +362,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
             </Drawer>
         </Layout>
 
+
     );
 };
 
@@ -359,8 +375,8 @@ SidebarLayout.args = {
                 <div style={{ width: 'auto' }}>
                     <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
                         <>
-                            <Button flat label='Cancel' size="sm" />
-                            <Button label='Okay' size="sm" />
+                            <Button flat label='Cancel' size="sm" theme='cancel' />
+                            <Button label='Okay' size="sm" theme='primary' />
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
@@ -369,7 +385,7 @@ SidebarLayout.args = {
                     <Card className='bp-mt-md' size="sm" title="Loon" actions={
                         <>
                             <Button flat label='Cancel' size="sm" />
-                            <Button label='Okay' size="sm" />
+                            <Button label='Okay' size="sm" theme='delete' />
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
@@ -382,6 +398,21 @@ SidebarLayout.args = {
 
                         ]}
                     />
+                    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <Banner type='alert'>
+                            Here is an alert!
+                        </Banner>
+                        <Banner type='warning'>
+                            Here is a warning banner!
+                        </Banner>
+                        <Banner type='success'>
+                            Here is a success banner!
+                        </Banner>
+                        <Banner>
+                            Here is an info banner!!
+                        </Banner>
+                    </div>
+
                 </div>
             </Scrollable>
 

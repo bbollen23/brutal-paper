@@ -4,6 +4,11 @@ interface DrawerContextType {
     closeDrawer: () => void
 }
 
+interface DrawerProviderProps {
+    children: React.ReactNode;
+    closeDrawer: () => void;
+}
+
 // Create a context
 const DrawerContext = createContext<DrawerContextType | null>(null);
 
@@ -16,7 +21,7 @@ export const useDrawer = () => {
 
 };
 
-export const DrawerProvider: React.FC<{ closeDrawer: () => void; children: React.ReactNode }> = ({ children, closeDrawer }) => {
+export const DrawerProvider = ({ children, closeDrawer }: DrawerProviderProps): JSX.Element => {
     return (
         <DrawerContext.Provider value={{ closeDrawer }}>
             {children}

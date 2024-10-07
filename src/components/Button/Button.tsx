@@ -44,6 +44,12 @@ const getClassNames = ({ theme, size, isClicked, flat, disabled }: ClassNameProp
         className = `${className} confirm`
 
     }
+    if (theme === 'primary') {
+        className = `${className} primary`
+    }
+    if (theme === 'previous') {
+        className = `${className} flat`
+    }
     return className
 }
 

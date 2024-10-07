@@ -1,0 +1,29 @@
+.bp-banner {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: 2px solid var(--theme-border-color);
+    box-sizing: border-box;
+
+    &.success {
+        background-color: var(--theme-btn-confirm-background-color);
+    }
+
+    &.warning {
+        background-color: var(--theme-item-warning);
+    }
+
+    &.info {
+        background-color: var(--theme-btn-primary-background-color);
+    }
+
+    &.alert {
+        background-color: var(--theme-btn-delete-background-color);
+    }
+}

@@ -1,4 +1,14 @@
 import type { Preview } from "@storybook/react";
+import { NotificationProvider } from "../src/components/Notification/NotificationContext";
+import React from 'react';
+
+// export const decorators = [
+//   (Story) => (
+//     <NotificationProvider>
+//       <Story />
+//     </NotificationProvider>
+//   ),
+// ];
 
 const preview: Preview = {
   parameters: {
@@ -41,6 +51,14 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    // 👇 Defining the decorator in the preview file applies it to all stories
+    (Story) => {
+      return (<NotificationProvider><Story /></NotificationProvider>);
+
+    },
+  ],
+
 };
 
 export default preview;

@@ -37,8 +37,8 @@ const Notification = ({ dismissTime, message, type, handleDismiss }: Notificatio
                 setIsAnimating(true);
                 setTimeout(() => {
                     handleDismiss();
-                }, 500)
-            }, dismissTime - 500)
+                }, 300)
+            }, dismissTime - 300)
             return () => clearTimeout(timer);
         }
     })
@@ -46,9 +46,9 @@ const Notification = ({ dismissTime, message, type, handleDismiss }: Notificatio
 
     const setAnimation = (): string => {
         if (manuallyDismissed || isAnimating) {
-            return `slide-out 0.5s ease-in-out forwards`;
+            return `slide-out 0.3s ease-in-out forwards`;
         }
-        return `slide-in 0.5s ease-in-out`;
+        return `slide-in 0.3s ease-in-out`;
     }
 
     const handleManualDismiss = () => {

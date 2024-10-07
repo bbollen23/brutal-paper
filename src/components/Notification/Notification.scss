@@ -13,7 +13,6 @@
     z-index: 5;
     color: var(--theme-text-color);
     margin-top: 10px;
-    // border: 2px solid var(--theme-card-border-color);
     border-radius: 4px;
     display: flex;
     flex-direction: row;
@@ -21,10 +20,8 @@
     align-items: center;
     gap: 10px;
     padding: 10px;
-    animation: slide-in 0.5s ease-in-out, slide-out 0.5s ease-in-out 2s;
     animation-fill-mode: forwards;
     position: relative;
-    // transition: 0.1s ease-in;
 
     &.success {
         background-color: var(--theme-btn-confirm-background-color);

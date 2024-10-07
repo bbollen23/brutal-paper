@@ -3,7 +3,7 @@ import './Layout.scss';
 
 export interface LayoutProps {
     children: React.ReactNode;
-    className: string
+    className?: string
 }
 
 const Layout = ({ children, className }: LayoutProps): JSX.Element => {

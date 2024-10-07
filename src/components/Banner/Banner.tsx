@@ -9,7 +9,7 @@ export interface BannerProps {
     actions?: React.ReactNode;
 }
 
-const Banner = ({ children, type, style }: BannerProps): JSX.Element => {
+const Banner = ({ actions, children, type, style }: BannerProps): JSX.Element => {
 
 
     const iconClass = (type: BannerProps['type']): string => {
@@ -30,8 +30,13 @@ const Banner = ({ children, type, style }: BannerProps): JSX.Element => {
 
     return (
         <div style={style} className={`bp-banner ${type ? type : 'info'}`}>
-            <Icon type="none" icon={iconClass(type)} />
-            {children}
+            <div className="bp-banner-content">
+                <Icon type="none" icon={iconClass(type)} />
+                {children}
+            </div>
+            <div className="bp-banner-actions">
+                {actions}
+            </div>
         </div>
     )
 }

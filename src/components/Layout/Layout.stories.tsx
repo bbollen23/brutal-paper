@@ -9,14 +9,14 @@ import Button from "../Button";
 import Body from "../Body";
 import { Modal, ModalHeader, ModalContent } from "../Modal";
 import Input from "../Input";
-import { Sidebar, SidebarHeader, SidebarItem, SidebarSectionTitle } from "../Sidebar";
+import { Sidebar, SidebarItem, SidebarSectionTitle } from "../Sidebar";
 import Scrollable from "../Scrollable";
 import Divider from "../Divider";
 import Tabs from "../Tabs";
-import LoadingOverlay from "../Loading/LoadingOverlay";
 import { LoadingIcon } from "../Loading";
-import { NotificationProvider, useNotification, NotificationType } from "../Notification/NotificationContext";
+import { useNotification, NotificationType } from "../Notification/NotificationContext";
 import Banner from "../Banner";
+import Footer from "../Footer";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -69,7 +69,7 @@ const Template: ComponentStory<typeof Layout> = (args) => {
     }
 
     return (
-        <Layout className='drawer drawer-overlap'>
+        <Layout>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -129,6 +129,7 @@ const Template: ComponentStory<typeof Layout> = (args) => {
                     </div>
                 </ModalContent>
             </Modal>
+            <Footer />
         </Layout>
 
     );
@@ -245,7 +246,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
     }
 
     return (
-        <Layout className='sidebar container no-right-margin no-footer'>
+        <Layout className='sidebar container no-right-margin smooth'>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -360,6 +361,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 <DrawerItem icon="bi bi-bar-chart-steps" label="Projects" />
                 <DrawerItem icon="bi bi-activity" label="Research" />
             </Drawer>
+            <Footer />
         </Layout>
 
 
@@ -392,27 +394,12 @@ SidebarLayout.args = {
                     </Card>
                     <Tabs
                         tabData={[
-                            { label: 'Item 1', 'content': <div>Test1</div> },
-                            { label: 'Item 2', 'content': <div>Test 2</div> },
-                            { label: 'Item 3', 'content': <div>Test 3</div> }
-
+                            { label: 'Alert Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='alert' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
+                            { label: 'Warning Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='warning' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
+                            { label: 'Success Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='success' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
+                            { label: 'Info Banner', 'content': <div style={{ "margin": "10px" }}><Banner actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> }
                         ]}
                     />
-                    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                        <Banner type='alert'>
-                            Here is an alert!
-                        </Banner>
-                        <Banner type='warning'>
-                            Here is a warning banner!
-                        </Banner>
-                        <Banner type='success'>
-                            Here is a success banner!
-                        </Banner>
-                        <Banner>
-                            Here is an info banner!!
-                        </Banner>
-                    </div>
-
                 </div>
             </Scrollable>
 

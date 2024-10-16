@@ -1,10 +1,12 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useRef } from 'react';
 import './Notification.scss'
-import Notification from './Notification';
 
 interface NotificationContextType {
     notify: ({ message, type }: NotificationType) => void;
+    setNotifyRef: (ref: NotifyFunction) => void;
 }
+
+type NotifyFunction = ({ message, type }: NotificationType) => void;
 
 interface NotificationProviderProps {
     children: React.ReactNode;
@@ -24,57 +26,18 @@ const NotificationContext = createContext<NotificationContextType | null>(null);
 
 
 export const NotificationProvider = ({ children }: NotificationProviderProps): JSX.Element => {
-    const [notifications, setNotifications] = useState<NotificationTypeTimed[]>([]);
 
-    const notify = ({ message, dismissTime, type = 'info' }: NotificationType) => {
-        let currDismissTime;
+    // Initialized base notification function to be passed as ref
+    const notifyRef = useRef<NotifyFunction | null>(null);
 
-        // Get dismiss time based on type or passed in. If alert, no default.
-        if (dismissTime) {
-            currDismissTime = dismissTime;
-        } else {
-            if (type === 'info' || type === 'success' || type === 'warning') {
-                currDismissTime = 3000;
-            }
+    const notify = useCallback(({ message, type }: NotificationType) => {
+        if (notifyRef.current) {
+            notifyRef.current({ message, type })
         }
-
-        // Initialize Notification
-        const notificationTimed: NotificationTypeTimed = {
-            message,
-            type,
-            timestampStart: Date.now(),
-            dismissTime: currDismissTime
-        }
-
-        setNotifications((prevNotifications) => [
-            ...prevNotifications,
-            notificationTimed
-        ]);
-
-    }
-
-    // Removes notification
-    const dismissNotification = (timestampStart: number) => {
-        setNotifications((prevNotifications) =>
-            prevNotifications.filter((n) => n.timestampStart !== timestampStart)
-        );
-    };
+    }, [])
 
     return (
-        <NotificationContext.Provider value={{ notify }}>
-            {notifications.length !== 0 ?
-                <div className="bp-notification-container">
-                    {notifications.map((notification: NotificationTypeTimed) => {
-                        return <Notification
-                            key={`notification-${notification.timestampStart}`}
-                            type={notification.type}
-                            message={notification.message}
-                            dismissTime={notification.dismissTime}
-                            handleDismiss={() => dismissNotification(notification.timestampStart)}
-                        />
-                    })}
-                </div>
-                : null}
+        <NotificationContext.Provider value={{ notify, setNotifyRef: (ref) => { notifyRef.current = ref; } }}>
             {children}
         </NotificationContext.Provider>
     )

@@ -8,23 +8,23 @@
     justify-content: space-between;
     font-size: 1.2rem;
     border-radius: 4px;
-    border: 2px solid var(--theme-border-color);
+    border: 2px solid var(--bp-theme-border-color);
     box-sizing: border-box;
 
     &.success {
-        background-color: var(--theme-btn-confirm-background-color);
+        background-color: var(--bp-theme-btn-confirm-background-color);
     }
 
     &.warning {
-        background-color: var(--theme-item-warning);
+        background-color: var(--bp-theme-item-warning);
     }
 
     &.info {
-        background-color: var(--theme-btn-primary-background-color);
+        background-color: var(--bp-theme-btn-primary-background-color);
     }
 
     &.alert {
-        background-color: var(--theme-btn-delete-background-color);
+        background-color: var(--bp-theme-btn-delete-background-color);
     }
 
     .bp-banner-content {

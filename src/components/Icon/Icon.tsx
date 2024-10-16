@@ -1,12 +1,12 @@
 import React from 'react'
-import '/node_modules/bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import './Icon.scss'
 
 
 export interface IconProps {
     icon: string;
     label?: string;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
     style?: React.CSSProperties;
     size?: 'xs' | 'sm' | 'md' | 'lg';
     type?: 'shading' | 'move' | 'shading-and-move' | 'none';

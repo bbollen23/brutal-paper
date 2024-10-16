@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import './Tabs.scss'
+
 export interface TabsProps {
-    tabData: TabInfo[];
+    tabData: TabData[];
     defaultIndex?: number;
     selectedIndex?: number;
     flat?: boolean;
 }
 
-export interface TabInfo {
+export interface TabData {
     label: string;
     content: React.ReactNode
     defaultIndex?: number
 }
 
-const Tabs = ({ flat, tabData, defaultIndex }: TabsProps): JSX.Element => {
+export const Tabs = ({ flat, tabData, defaultIndex }: TabsProps): JSX.Element => {
 
     const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex ?? 0);
 
@@ -37,4 +38,3 @@ const Tabs = ({ flat, tabData, defaultIndex }: TabsProps): JSX.Element => {
     )
 }
 
-export default Tabs;

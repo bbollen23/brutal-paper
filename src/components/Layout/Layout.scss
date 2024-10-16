@@ -1,8 +1,8 @@
 @import '../global.scss';
 
 .bp-layout {
-    background-color: var(--theme-background-color);
-    color: var(--theme-text-color);
+    background-color: var(--bp-theme-background-color);
+    color: var(--bp-theme-text-color);
     grid-template-rows: 80px 1fr 80px;
     grid-template-columns: var(--layout-margin) 1fr var(--layout-margin);
     min-height: 100vh;
@@ -34,13 +34,49 @@
         grid-row: 1 / span all;
     }
 
+    /*----------------------------------------------------*/
+    /* Non-sidebar, no margin styles. */
+    /*----------------------------------------------------*/
+
+    &.no-right-margin:not(.container) {
+
+        grid-template-columns: var(--layout-margin) 1fr var(--layout-margin) 20px;
+
+        .bp-body {
+            grid-column: 2 / -2;
+        }
+
+        &.no-left-margin {
+
+            grid-template-columns: 20px var(--layout-margin) 1fr var(--layout-margin) 20px;
+
+            .bp-header {
+                grid-template-columns: 20px 250px 1fr 200px 20px;
+
+                .bp-header-group.left {
+                    grid-column: 3;
+                }
+
+                .bp-header-group.right {
+                    grid-column: 4;
+                }
+            }
+        }
+    }
+
+    &.no-left-margin {
+
+        grid-template-columns: 20px var(--layout-margin) 1fr var(--layout-margin);
+
+        .bp-body {
+            grid-column: 2 / -2;
+        }
+    }
+
     /*---------------------------------------------*/
     /* Need to create non-sidebar container styles */
     /*---------------------------------------------*/
 
-    /*----------------------------------------------------*/
-    /* Need to create non-sidebar, no-right margin styles */
-    /*----------------------------------------------------*/
 
     // If no footer, body spans entire rows. Height increased.
 
@@ -104,7 +140,7 @@
 
         &.no-right-margin:not(.container) {
             .bp-body {
-                grid-column: 4 / span all;
+                grid-column: 3 / span all;
             }
         }
 
@@ -126,6 +162,6 @@
             border-top: none;
         }
 
-        --theme-header-background-color: var(--theme-background-color);
+        --bp-theme-header-background-color: var(--bp-theme-background-color);
     }
 }

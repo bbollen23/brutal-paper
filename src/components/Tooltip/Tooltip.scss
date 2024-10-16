@@ -1,0 +1,42 @@
+.bp-tooltip-container {
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.bp-tooltip {
+    background-color: var(--bp-theme-tooltip-color);
+    // color: var(--bp-theme-text-color);
+    color: var(--bp-theme-tooltip-text-color);
+    padding: 5px;
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    border: 2px solid var(--bp-theme-card-border-color);
+    padding: 10px;
+    z-index: 1000;
+    position: absolute;
+
+    &>div {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    &.md {
+        width: 200px;
+        height: auto;
+    }
+
+    &.sm {
+        width: 100px;
+        height: auto;
+        font-size: 0.8rem;
+    }
+
+    &.lg {
+        width: 400px;
+        height: auto;
+    }
+}

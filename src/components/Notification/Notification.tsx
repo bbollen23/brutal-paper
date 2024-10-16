@@ -41,7 +41,7 @@ const Notification = ({ dismissTime, message, type, handleDismiss }: Notificatio
             }, dismissTime - 300)
             return () => clearTimeout(timer);
         }
-    })
+    }, [])
 
 
     const setAnimation = (): string => {

@@ -4,7 +4,7 @@ $bp-drawer-item-spacing: 30px;
 $bp-drawer-width: 350px;
 
 .bp-drawer-container {
-    border-right: 1px solid var(--theme-border-color);
+    border-right: 1px solid var(--bp-theme-border-color);
     position: absolute;
     top: 0;
     height: max-content;
@@ -12,12 +12,12 @@ $bp-drawer-width: 350px;
     width: $bp-drawer-width;
 
     .bp-drawer-content {
-        background-color: var(--theme-header-background-color);
-        color: var(--theme-header-text-color);
+        background-color: var(--bp-theme-header-background-color);
+        color: var(--bp-theme-header-text-color);
         width: $bp-drawer-width;
         min-height: 100vh;
         box-sizing: border-box;
-        font-family: var(--theme-font-family-text);
+        font-family: var(--bp-theme-font-family-text);
         display: flex;
         flex-direction: column;
         padding-top: $bp-drawer-padding-top;
@@ -28,7 +28,7 @@ $bp-drawer-width: 350px;
         .bp-drawer-title {
             font-size: 1.4rem;
             font-weight: bold;
-            font-family: var(--theme-font-family-title);
+            font-family: var(--bp-theme-font-family-title);
         }
 
         display:flex;
@@ -42,9 +42,9 @@ $bp-drawer-width: 350px;
 
 
     .bp-drawer-item {
-        font-family: var(--theme-font-family-text);
+        font-family: var(--bp-theme-font-family-text);
         box-sizing: border-box;
-        padding: ($bp-drawer-item-spacing/2) 0px ($bp-drawer-item-spacing/2) $bp-drawer-padding-left;
+        padding: calc($bp-drawer-item-spacing/2) 0px calc($bp-drawer-item-spacing/2) $bp-drawer-padding-left;
         cursor: pointer;
         width: 100%;
         background-color: inherit;
@@ -58,7 +58,7 @@ $bp-drawer-width: 350px;
 
         &:hover {
             text-decoration: underline;
-            background-color: var(--theme-item-hover-color);
+            background-color: var(--bp-theme-item-hover-color);
         }
 
         i {
@@ -107,7 +107,7 @@ $bp-drawer-width: 350px;
 
     &.open {
         pointer-events: all;
-        background-color: var(--theme-modal-backdrop-color);
+        background-color: var(--bp-theme-modal-backdrop-color);
     }
 
 

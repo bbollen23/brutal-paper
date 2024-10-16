@@ -33,7 +33,7 @@
     }
 
     .bp-card-shadow {
-        background-color: var(--theme-card-shadow-color);
+        background-color: var(--bp-theme-card-shadow-color);
         transform: translate(var(--card-clicked-move-x), var(--card-clicked-move-y));
         position: absolute;
         width: 100%;
@@ -45,7 +45,7 @@
     }
 
     .bp-card-border {
-        background-color: var(--theme-card-border-color);
+        background-color: var(--bp-theme-card-border-color);
         padding: 2px;
         height: calc(100% + 1px);
         width: calc(100% + 1px);
@@ -61,7 +61,7 @@
         height: 100%;
         z-index: 2;
         padding: 5px 30px 5px 30px;
-        background-color: var(--theme-card-background-color);
+        background-color: var(--bp-theme-card-background-color);
         position: relative;
         clip-path: polygon(calc(100% - 38px) 0, calc(100%) 38px, calc(100%) 100%, 0 100%, 0 0);
         box-sizing: border-box; // Include padding and borders in width
@@ -98,12 +98,12 @@
                 font-size: 2.0rem;
                 font-weight: bold;
                 padding-bottom: 5px;
-                font-family: var(--theme-font-family-title);
+                font-family: var(--bp-theme-font-family-title);
             }
         }
 
         .bp-card-text {
-            font-family: var(--theme-font-family-text);
+            font-family: var(--bp-theme-font-family-text);
         }
     }
 }

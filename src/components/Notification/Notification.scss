@@ -11,7 +11,7 @@
 
 .bp-notification {
     z-index: 5;
-    color: var(--theme-text-color);
+    color: var(--bp-theme-text-color);
     margin-top: 10px;
     border-radius: 4px;
     display: flex;
@@ -24,20 +24,20 @@
     position: relative;
 
     &.success {
-        background-color: var(--theme-btn-confirm-background-color);
+        background-color: var(--bp-theme-btn-confirm-background-color);
 
     }
 
     &.warning {
-        background-color: var(--theme-item-warning);
+        background-color: var(--bp-theme-item-warning);
     }
 
     &.info {
-        background-color: var(--theme-btn-primary-background-color);
+        background-color: var(--bp-theme-btn-primary-background-color);
     }
 
     &.alert {
-        background-color: var(--theme-btn-delete-background-color);
+        background-color: var(--bp-theme-btn-delete-background-color);
 
     }
 }

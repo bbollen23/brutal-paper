@@ -1,6 +1,6 @@
 .bp-loading-overlay-wrapper {
     position: absolute;
-    background-color: var(--theme-modal-backdrop-color);
+    background-color: var(--bp-theme-modal-backdrop-color);
     width: 100vw;
     height: 100vw;
     max-width: 100vw;
@@ -57,7 +57,7 @@
 }
 
 .bp-dot {
-    background-color: var(--theme-text-color);
+    background-color: var(--bp-theme-text-color);
     border-radius: 4px;
 
 }

@@ -8,15 +8,16 @@ import Card from "../Card";
 import Button from "../Button";
 import Body from "../Body";
 import { Modal, ModalHeader, ModalContent } from "../Modal";
-import Input from "../Input";
+import { Input, Select } from "../Input";
 import { Sidebar, SidebarItem, SidebarSectionTitle } from "../Sidebar";
 import Scrollable from "../Scrollable";
 import Divider from "../Divider";
-import Tabs from "../Tabs";
+import { Tabs } from "../Tabs";
 import { LoadingIcon } from "../Loading";
 import { useNotification, NotificationType } from "../Notification/NotificationContext";
 import Banner from "../Banner";
 import Footer from "../Footer";
+import Tooltip from "../Tooltip"
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -114,13 +115,13 @@ const Template: ComponentStory<typeof Layout> = (args) => {
                             Please enter in your credentials.
                         </div>
                         <Input
-                            onChange={(e) => handleInputChange(e, 'username')} value={username}
+                            onChange={(e: any) => handleInputChange(e, 'username')} value={username}
                             label='Username'
                             errorMessage='Oh no!'
                             validator={customValidatorUsername}
                         />
                         <Input
-                            onChange={(e) => handleInputChange(e, 'password')} value={password}
+                            onChange={(e: any) => handleInputChange(e, 'password')} value={password}
                             label='Password'
                             errorMessage="Password must be at least 8 characters in length"
                             validator={customValidator}
@@ -212,19 +213,16 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
 
     const [darkMode, setDarkMode] = useState<boolean>(false);
 
-    const notifyTypes: NotificationType['type'][] = ['alert', 'info', 'warning', 'success']
-    const notifyMessages: string[] = ['Danger Danger! Oh no!!', 'Just letting you know', 'Be careful!', 'Sweet!']
-    const [notifyIndex, setNotifyIndex] = useState<number>(0);
+    // const notifyTypes: NotificationType['type'][] = ['alert', 'info', 'warning', 'success']
+    // const notifyMessages: string[] = ['Danger Danger! Oh no!!', 'Just letting you know', 'Be careful!', 'Sweet!']
+    // const [notifyIndex, setNotifyIndex] = useState<number>(0);
 
     const handleDarkMode = () => {
-        let storyBookRoot = document.getElementById('storybook-root')
 
-        if (storyBookRoot) {
-            if (darkMode === false) {
-                storyBookRoot.classList.add('dark-mode')
-            } else {
-                storyBookRoot.classList.remove('dark-mode')
-            }
+        if (darkMode === false) {
+            document.body.classList.add('dark-mode')
+        } else {
+            document.body.classList.remove('dark-mode')
         }
 
         setDarkMode(prev => !prev);
@@ -238,15 +236,17 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
 
     const handleNotify = () => {
         notify({
-            message: notifyMessages[notifyIndex],
-            type: notifyTypes[notifyIndex]
+            message: 'test',
+            type: 'success'
         })
 
-        setNotifyIndex(prev => (prev + 1) % 4);
+        // setNotifyIndex(prev => (prev + 1) % 4);
     }
 
+    console.log('render');
+
     return (
-        <Layout className='sidebar container no-right-margin smooth'>
+        <Layout className='no-left-margin'>
             <Header>
                 <HeaderTitle>MuView</HeaderTitle>
                 <HeaderGroup>
@@ -286,14 +286,14 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                             Please enter in your credentials.
                         </div>
                         <Input
-                            onChange={(e) => handleInputChange(e, 'username')} value={username}
+                            onChange={(e: any) => handleInputChange(e, 'username')} value={username}
                             label='Username'
                             errorMessage='Oh no!'
                             validator={customValidatorUsername}
                             placeholder="Your Username"
                         />
                         <Input
-                            onChange={(e) => handleInputChange(e, 'password')} value={password}
+                            onChange={(e: any) => handleInputChange(e, 'password')} value={password}
                             label='Password'
                             errorMessage="Password must be at least 8 characters in length"
                             validator={customValidator}
@@ -304,7 +304,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 </ModalContent>
             </Modal>
 
-            <Sidebar>
+            {/* <Sidebar>
                 <SidebarSectionTitle>
                     Section Title
                 </SidebarSectionTitle>
@@ -354,7 +354,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 <SidebarItem icon='bi bi-house'>Item 2</SidebarItem>
                 <SidebarItem icon='bi bi-house'>Item 3</SidebarItem>
 
-            </Sidebar>
+            </Sidebar> */}
             <Drawer alignment='right' opened={drawerOpened} closeOnOutside onChange={setDrawerOpened} >
                 <DrawerHeader title="Settings" closeButton />
                 <DrawerItem icon="bi bi-house" label="Home" />
@@ -378,7 +378,7 @@ SidebarLayout.args = {
                     <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
                         <>
                             <Button flat label='Cancel' size="sm" theme='cancel' />
-                            <Button label='Okay' size="sm" theme='primary' />
+                            <Tooltip size="sm" content="Click me!"><Button label='Okay' size="sm" /></Tooltip>
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
@@ -387,14 +387,15 @@ SidebarLayout.args = {
                     <Card className='bp-mt-md' size="sm" title="Loon" actions={
                         <>
                             <Button flat label='Cancel' size="sm" />
-                            <Button label='Okay' size="sm" theme='delete' />
+                            <Button label='Okay' size="sm" />
+                            <Select label='Year' selectList={['2020', '2021', '2022']} />
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
                     </Card>
                     <Tabs
                         tabData={[
-                            { label: 'Alert Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='alert' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
+                            { label: 'Alert Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='alert' actions={<Tooltip content="click me!"><Button flat label="Notify"></Button></Tooltip>}>Here is an info banner!!<Tooltip size="sm" content="Click me!"><Button label='Okay' size="sm" theme='primary' /></Tooltip></Banner></div> },
                             { label: 'Warning Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='warning' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
                             { label: 'Success Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='success' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
                             { label: 'Info Banner', 'content': <div style={{ "margin": "10px" }}><Banner actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> }
@@ -402,9 +403,6 @@ SidebarLayout.args = {
                     />
                 </div>
             </Scrollable>
-
-
-
         </>
 
 

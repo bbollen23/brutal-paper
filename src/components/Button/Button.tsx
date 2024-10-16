@@ -1,5 +1,6 @@
 import React from "react";
 import "./Button.scss";
+import ReactDom from 'react-dom';
 
 export interface ButtonProps {
     label: string;
@@ -9,6 +10,8 @@ export interface ButtonProps {
     flat?: boolean;
     disabled?: boolean;
     theme?: 'primary' | 'confirm' | 'cancel' | 'previous' | 'delete';
+    dropdown?: boolean;
+    dropdownList?: string[]
 }
 
 interface ClassNameProps {
@@ -17,6 +20,11 @@ interface ClassNameProps {
     flat?: boolean;
     disabled?: boolean;
     theme?: 'primary' | 'confirm' | 'cancel' | 'previous' | 'delete';
+}
+
+export interface Position {
+    left: number;
+    top: number;
 }
 
 const getClassNames = ({ theme, size, isClicked, flat, disabled }: ClassNameProps): string => {
@@ -55,16 +63,33 @@ const getClassNames = ({ theme, size, isClicked, flat, disabled }: ClassNameProp
 
 
 
-const Button = ({ theme, disabled, size, style, label, onClick, flat }: ButtonProps): JSX.Element => {
+const Button = ({ dropdown, dropdownList, theme, disabled, size, style, label, onClick, flat }: ButtonProps): JSX.Element => {
 
     const [isClicked, setIsClicked] = React.useState<boolean>(false);
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [position, setPosition] = React.useState<Position>({ left: 0, top: 0 })
 
-
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 100);
-        if (onClick) {
+        if (onClick && !dropdown) {
             onClick();
+        } else if (dropdown) {
+            if (!open) {
+                const targetElement = event.currentTarget;
+                const targetRect = targetElement.getBoundingClientRect();
+
+                let positionLeft = targetRect.left;
+                let positionTop = targetRect.top + 30;
+
+                setPosition({
+                    left: positionLeft,
+                    top: positionTop
+                });
+                setOpen(true);
+            } else {
+                setOpen(false);
+            }
         }
     }
 
@@ -78,7 +103,15 @@ const Button = ({ theme, disabled, size, style, label, onClick, flat }: ButtonPr
                 </div>
                 {!flat && !disabled && !(theme === 'cancel') ? <div className="bp-btn-shadow"></div> : null}
             </div>
-
+            {open && dropdown &&
+                ReactDom.createPortal(
+                    <div className="bp-dropdown-menu" style={{ top: `${position.top}px`, left: `${position.left}px` }}>
+                        <div>2023</div>
+                        <div>2022</div>
+                        <div>2021</div>
+                        <div>2020</div>
+                    </div>, document.body
+                )}
         </div>
 
     );

@@ -78,14 +78,16 @@ const Input = ({ type, label, placeholder, value, onChange, errorMessage, valida
     return (
         <div className='bp-input-container'>
             <div className='bp-label'>{label}</div>
-            <input
-                ref={inputRef}
-                placeholder={placeholder}
-                className={`bp-input ${!valid ? `invalid` : null}`}
-                value={value}
-                onChange={handleOnChange}
-                type={type}
-            />
+            <div className={`bp-input-wrapper`}>
+                <input
+                    ref={inputRef}
+                    placeholder={placeholder}
+                    className={`bp-input ${!valid ? `invalid` : null}`}
+                    value={value}
+                    onChange={handleOnChange}
+                    type={type}
+                />
+            </div>
             <div ref={errorRef} className='bp-invalid-container'>
                 {!valid ? <Icon icon='bi bi-exclamation-octagon' size="xs" /> : null}
                 <div style={{ fontSize: errorFontSize }}>{!valid ? errorMessage : null}</div>

@@ -6,12 +6,13 @@ import postcss from "rollup-plugin-postcss";
 
 
 
-import { terser } from "@rollup/plugin-terser";
+import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 export default [
     {
         input: "src/index.ts",
+        external: ['bootstrap', 'bootstrap-icons'], // Mark them as external
         output: [
             {
                 file: "dist/cjs/index.js",
@@ -29,7 +30,8 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             postcss(),
-            terser()
+            terser(),
+            peerDepsExternal(),
         ],
     },
     {

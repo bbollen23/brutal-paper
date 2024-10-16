@@ -1,1 +1,1 @@
-export { default } from './Tabs';
+export { Tabs, TabData } from './Tabs';

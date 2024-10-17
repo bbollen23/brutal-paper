@@ -1,4 +1,4 @@
-export { default as Button } from './Button';
+export { Button, SwitchGroup } from './Button';
 export { default as Card } from './Card';
 export { DrawerHeader, DrawerItem, Drawer } from './Drawer';
 export { default as Icon } from './Icon';

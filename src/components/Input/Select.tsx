@@ -6,8 +6,9 @@ import ReactDom from 'react-dom';
 export interface SelectProps {
     label: string;
     placeholder?: string;
-    onSelect?: () => void;
+    onSelect?: (value: string) => void;
     selectList: string[];
+    defaultIndex?: number;
 }
 export interface Position {
     left: number;
@@ -15,7 +16,7 @@ export interface Position {
     width: number;
 }
 
-const Select = ({ selectList, label, placeholder, onSelect }: SelectProps): JSX.Element => {
+const Select = ({ defaultIndex, selectList, label, placeholder, onSelect }: SelectProps): JSX.Element => {
 
     const [value, setValue] = useState<string>('');
     const [selectOpen, setSelectOpen] = useState<boolean>(false);
@@ -61,7 +62,7 @@ const Select = ({ selectList, label, placeholder, onSelect }: SelectProps): JSX.
     const handleSelectItemClick = (entry: string) => {
         if (onSelect) {
             if (entry !== value) {
-                onSelect();
+                onSelect(entry);
             }
         }
         setValue(entry);
@@ -75,9 +76,12 @@ const Select = ({ selectList, label, placeholder, onSelect }: SelectProps): JSX.
             inputRef.current &&
             !inputRef.current.contains(event.target as Node)
         ) {
-            console.log(valueRef.current)
             if (!(selectList.includes(valueRef.current))) {
-                setValue(selectList[0])
+                if (defaultIndex) {
+                    setValue(selectList[defaultIndex])
+                } else {
+                    setValue(selectList[0])
+                }
             }
             setSelectOpen(false); // Close the dropdown if clicked outside
         }
@@ -101,6 +105,16 @@ const Select = ({ selectList, label, placeholder, onSelect }: SelectProps): JSX.
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [selectOpen]);
+
+    useEffect(() => {
+        if (defaultIndex !== undefined) {
+            try {
+                setValue(selectList[defaultIndex])
+            } catch (error) {
+                throw new Error('Default index out of range of selectList.')
+            }
+        }
+    }, [])
 
     return (
         <div className='bp-input-container'>

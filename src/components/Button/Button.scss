@@ -109,3 +109,17 @@
     gap: 5px;
     background-color: var(--bp-theme-card-background-color);
 }
+
+
+.bp-switch-group-container {
+    display: flex;
+    flex-direction: row;
+
+    .bp-btn-container {
+        &.clicked {
+            .bp-btn {
+                transform: translate(2px, 2px);
+            }
+        }
+    }
+}

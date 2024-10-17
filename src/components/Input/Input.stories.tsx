@@ -64,6 +64,7 @@ const SelectTemplate: ComponentStory<typeof Input> = (args) => {
                 {...args}
                 onSelect={onSelect}
                 select
+                defaultIndex={0}
                 selectList={['2024', '2023', '2022', '2021', '2020']}
             />
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Button from "./Button";
+import SwitchGroup from "./SwitchGroup";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -50,3 +51,23 @@ FlatBtn.args = {
 };
 
 
+
+
+const SwitchGroupTemplate: ComponentStory<typeof Button> = (args) => {
+
+    const handleOnClickGroup = (booleanList: boolean[]) => {
+        console.log(booleanList)
+    }
+
+
+    return (
+        <div style={{ width: '700px', padding: '10px', border: '1px solid grey' }}><SwitchGroup onClick={handleOnClickGroup} {...args} /></div>
+    )
+};
+
+
+export const SwitchBtn = SwitchGroupTemplate.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+SwitchBtn.args = {
+    labelList: ['hello', 'test', 'one'],
+};

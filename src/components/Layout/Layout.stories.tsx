@@ -5,7 +5,7 @@ import Layout from "./Layout";
 import { Header, HeaderItem, HeaderTitle, HeaderGroup } from "../Header";
 import Icon from '../Icon';
 import Card from "../Card";
-import Button from "../Button";
+import { Button } from "../Button";
 import Body from "../Body";
 import { Modal, ModalHeader, ModalContent } from "../Modal";
 import { Input, Select } from "../Input";

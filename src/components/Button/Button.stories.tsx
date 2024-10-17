@@ -70,4 +70,5 @@ export const SwitchBtn = SwitchGroupTemplate.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 SwitchBtn.args = {
     labelList: ['hello', 'test', 'one'],
+    defaultState: [true, true, false]
 };

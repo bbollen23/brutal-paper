@@ -4,14 +4,15 @@ import './Button.scss';
 
 export interface SwitchGroupProps {
     labelList: string[];
+    defaultState?: boolean[];
     toggle?: boolean;
     onClick?: (labelClickedState: boolean[]) => void;
 }
 
 
-const SwitchGroup = ({ labelList, toggle, onClick }: SwitchGroupProps): JSX.Element => {
+const SwitchGroup = ({ labelList, toggle, onClick, defaultState }: SwitchGroupProps): JSX.Element => {
 
-    const [clickedState, setClickedState] = useState<boolean[]>(labelList.map(entry => false) ?? [])
+    const [clickedState, setClickedState] = useState<boolean[]>(defaultState ?? labelList.map(entry => false) ?? [])
 
     const handleOnClick = (index: number) => {
 

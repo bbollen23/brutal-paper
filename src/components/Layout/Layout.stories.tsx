@@ -79,7 +79,7 @@ const Template: ComponentStory<typeof Layout> = (args) => {
                 </HeaderGroup>
                 <HeaderGroup alignment="right">
                     <Button label="Sign Up" />
-                    <Button onClick={toggleModal} label="Login" />
+                    <Button onClick={toggleModal} disabled={true} label="Login" />
                     <Icon icon="bi bi-gear" onClick={toggleDrawer} />
                 </HeaderGroup>
             </Header>
@@ -255,7 +255,7 @@ const SidebarTemplate: ComponentStory<typeof Layout> = (args) => {
                 </HeaderGroup>
                 <HeaderGroup alignment="right">
                     <Button label="Sign Up" onClick={handleNotify} />
-                    <Button onClick={toggleModal} label="Login" />
+                    <Button onClick={toggleModal} iconRight='bi bi-arrow-right' label="Login" />
                     <Icon icon='bi bi-gear' onClick={toggleDrawer} />
                     <Icon icon='bi bi-moon' onClick={handleDarkMode} />
                 </HeaderGroup>
@@ -377,8 +377,14 @@ SidebarLayout.args = {
                 <div style={{ width: 'auto' }}>
                     <Card className='bp-mt-md' size="sm" title={<img src='/hello.jpg' />} actionPosition="right" actions={
                         <>
-                            <Button flat label='Cancel' size="sm" theme='cancel' />
-                            <Tooltip size="sm" content="Click me!"><Button label='Okay' size="sm" /></Tooltip>
+                            <Button flat label='Cancel' size="sm" iconRight='bi bi-gear' theme='cancel' />
+                            <Tooltip
+                                style={{ padding: '0px 20px' }}
+                                size="sm"
+                                content="Click me!"
+                            >
+                                <Button label='Okay' size="sm" />
+                            </Tooltip>
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
@@ -388,14 +394,16 @@ SidebarLayout.args = {
                         <>
                             <Button flat label='Cancel' size="sm" />
                             <Button label='Okay' size="sm" />
-                            <Tooltip size="sm" content="Sort By"><IconDropdown icon='bi bi-funnel' size='sm' dropDownList={['Average Score', 'Release Date', 'Title', 'Artist']} onChange={(entry) => console.log(entry)} /></Tooltip>
+                            <Tooltip size="sm" content="Sort By" timeoutLength={1000}>
+                                <IconDropdown icon='bi bi-funnel' size='sm' dropDownList={['Average Score', 'Release Date', 'Title', 'Artist']} onChange={(entry) => console.log(entry)} />
+                            </Tooltip>
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis
                     </Card>
                     <Tabs
                         tabData={[
-                            { label: 'Alert Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='alert' actions={<Tooltip content="click me!"><Button flat label="Notify"></Button></Tooltip>}>Here is an info banner!!<Tooltip size="sm" content="Click me!"><Button label='Okay' size="sm" theme='primary' /></Tooltip></Banner></div> },
+                            { label: 'Alert Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='alert' actions={<Tooltip content="click me!"><Button flat label="Notify"></Button></Tooltip>}>Here is an info banner!!<Tooltip size="sm" content="Click me!"><Button disabled={true} label='Okay' size="sm" theme='primary' /></Tooltip></Banner></div> },
                             { label: 'Warning Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='warning' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
                             { label: 'Success Banner', 'content': <div style={{ "margin": "10px" }}><Banner type='success' actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> },
                             { label: 'Info Banner', 'content': <div style={{ "margin": "10px" }}><Banner actions={<Button flat label="Notify"></Button>}>Here is an info banner!!</Banner></div> }

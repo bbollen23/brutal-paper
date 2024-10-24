@@ -5,16 +5,21 @@
 
 .bp-tooltip {
     background-color: var(--bp-theme-tooltip-color);
-    // color: var(--bp-theme-text-color);
     color: var(--bp-theme-tooltip-text-color);
     padding: 5px;
     border-radius: 4px;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.1s ease;
     pointer-events: none;
     border: 2px solid var(--bp-theme-card-border-color);
     padding: 10px;
     z-index: 1000;
     position: absolute;
+    box-sizing: border-box;
+    opacity: 0;
+
+    &.visible {
+        opacity: 1;
+    }
 
     &>div {
         flex-direction: row;
@@ -24,19 +29,9 @@
         justify-content: center;
     }
 
-    &.md {
-        width: 200px;
-        height: auto;
-    }
+
 
     &.sm {
-        width: 100px;
-        height: auto;
         font-size: 0.8rem;
-    }
-
-    &.lg {
-        width: 400px;
-        height: auto;
     }
 }

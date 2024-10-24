@@ -4,6 +4,55 @@
     position: relative;
     box-sizing: border-box;
 
+    .bp-btn {
+        position: relative;
+        z-index: 1;
+        border: 1px solid var(--bp-theme-card-border-color);
+        padding: 5px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: var(--bp-theme-font-family-text);
+        background-color: var(--bp-theme-card-background-color);
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            .bp-btn-text {
+                text-decoration: underline;
+            }
+
+        }
+
+
+    }
+
+    .bp-btn-shadow {
+        z-index: 0;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bp-theme-card-border-color);
+    }
+
+    &.icon-right {
+        .bp-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        &.bp-btn-small {
+            width: 90px;
+            min-width: 90px;
+
+        }
+    }
+
     &.bp-btn-small {
         width: 70px;
         min-width: 70px;
@@ -56,7 +105,12 @@
             background-color: inherit;
             border: 1px solid hsl(var(--gray-300));
             color: hsl(var(--gray-400));
+        }
 
+        &.flat {
+            .bp-btn {
+                border: none;
+            }
         }
 
     }
@@ -67,34 +121,7 @@
         }
     }
 
-    .bp-btn {
-        position: relative;
-        z-index: 1;
-        border: 1px solid var(--bp-theme-card-border-color);
-        padding: 5px 20px;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
-        font-family: var(--bp-theme-font-family-text);
-        background-color: var(--bp-theme-card-background-color);
-        font-size: 1rem;
-        cursor: pointer;
 
-        &:hover {
-            text-decoration: underline;
-        }
-
-    }
-
-    .bp-btn-shadow {
-        z-index: 0;
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        width: 100%;
-        height: 100%;
-        background-color: var(--bp-theme-card-border-color);
-    }
 }
 
 .bp-dropdown-menu {

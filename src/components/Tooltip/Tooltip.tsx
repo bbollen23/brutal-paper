@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import './Tooltip.scss'
 
 
 interface TooltipProps {
     content: React.ReactNode;
     children: React.ReactNode;
-    size?: 'sm' | 'md' | 'lg'
+    style?: React.CSSProperties;
+    size?: 'sm' | 'md' | 'lg';
+    timeoutLength?: number;
 }
 
 interface Position {
@@ -14,20 +16,31 @@ interface Position {
     top: number;
 }
 
-const Tooltip = ({ children, content, size = "md" }: TooltipProps): JSX.Element => {
+const Tooltip = ({ timeoutLength = 2000, style, children, content, size = "md" }: TooltipProps): JSX.Element => {
 
     const [visible, setVisible] = useState(false);
     const [position, setPosition] = useState<Position>({ left: 0, top: 0 });
+    const tooltipRef = useRef<HTMLDivElement | null>(null);
+    const tooltipTimeoutRef = useRef<number | undefined>();
 
     const width = size === "md" ? 200 : size === "lg" ? 400 : 100;
 
     const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
-        const targetElement = event.currentTarget; // The element being hovered over
-        const targetRect = targetElement.getBoundingClientRect(); // Get the dimensions and position of the target element
-        console.log(targetRect.left);
+        console.log('mouseOver');
+        const targetElement = event.currentTarget;
+        const targetRect = targetElement.getBoundingClientRect();
+        let tooltipHeight = 0;
+        let tooltipWidth = 0;
+        if (tooltipRef.current) {
+            tooltipHeight = tooltipRef.current.getBoundingClientRect().height;
+            tooltipWidth = tooltipRef.current.getBoundingClientRect().width;
+        }
 
-        let positionLeft = targetRect.left;
-        let positionTop = targetRect.top - targetRect.height - 20;
+        const dWidth = targetRect.width - tooltipWidth;
+
+
+        let positionLeft = targetRect.left + (dWidth / 2);
+        let positionTop = targetRect.top - tooltipHeight - 2;
 
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
@@ -39,29 +52,45 @@ const Tooltip = ({ children, content, size = "md" }: TooltipProps): JSX.Element 
         if (positionTop + (width / 2) > viewportHeight) {
             positionTop = positionTop - (width / 2) - 20;
         }
-
-
         setPosition({
-            left: positionLeft, // Center the tooltip based on its width
-            top: positionTop// Position it above the element, accounting for height
+            left: positionLeft,
+            top: positionTop
         });
+
+
+
+        if (tooltipTimeoutRef.current !== null) {
+            clearTimeout(tooltipTimeoutRef.current);
+        }
+
         setVisible(true);
+
+        tooltipTimeoutRef.current = window.setTimeout(() => {
+            setVisible(false);
+        }, timeoutLength);
     };
 
     const handleMouseOut = () => {
         setVisible(false);
+        if (tooltipTimeoutRef.current) {
+            clearTimeout(tooltipTimeoutRef.current);
+            tooltipTimeoutRef.current = undefined;
+        }
     };
+
 
 
     return (
         <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='bp-tooltip-container'>
             {children}
-            {visible &&
-                ReactDom.createPortal(
+            {
+                ReactDOM.createPortal(
                     <div
-                        className={`bp-tooltip ${size}`}
+
+                        ref={tooltipRef}
+                        className={`bp-tooltip ${size} ${visible ? 'visible' : ''}`}
                         style={{ top: `${position.top}px`, left: `${position.left}px` }}
-                    ><div>{content}</div>
+                    ><div style={style}>{content}</div>
                     </div>, document.body
                 )}
         </div>

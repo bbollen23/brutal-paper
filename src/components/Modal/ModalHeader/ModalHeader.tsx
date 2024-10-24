@@ -1,6 +1,6 @@
 import React from 'react';
 import { useModal } from '../ModalContext';
-import Icon from '../../Icon';
+import { Icon } from '../../Icon';
 
 
 interface ModalHeaderProps {

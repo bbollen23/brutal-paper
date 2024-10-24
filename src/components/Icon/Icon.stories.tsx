@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Icon from "./Icon";
+import IconDropdown from "./IconDropdown";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -55,3 +56,19 @@ LgLabel.args = {
     size: "lg"
 };
 
+
+const DropdownTemplate: ComponentStory<typeof Icon> = (args) => {
+    return (
+        <div style={{ width: '200px', height: '200px', border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <IconDropdown {...args} />
+        </div>
+    );
+};
+
+export const Dropdown = DropdownTemplate.bind({});
+
+Dropdown.args = {
+    dropDownList: ['hello', 'test'],
+    icon: 'bi bi-funnel',
+    size: 'lg'
+}

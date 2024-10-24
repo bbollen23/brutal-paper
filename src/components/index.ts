@@ -1,7 +1,7 @@
 export { Button, SwitchGroup } from './Button';
 export { default as Card } from './Card';
 export { DrawerHeader, DrawerItem, Drawer } from './Drawer';
-export { default as Icon } from './Icon';
+export { Icon, IconDropdown } from './Icon';
 export { default as Layout } from './Layout';
 export { Header, HeaderTitle, HeaderItem, HeaderGroup } from './Header';
 export { default as Body } from './Body';

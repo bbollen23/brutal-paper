@@ -7,7 +7,7 @@
     left: 0;
     transition: background-color 0.5s ease;
     pointer-events: none;
-    z-index: 5;
+    z-index: 20;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,11 +40,14 @@
 
         .bp-modal-header {
             grid-row: 1;
+            color: var(--bp-theme-text-color);
 
             .bp-modal-title {
                 font-size: 1.4rem;
                 font-weight: bold;
                 font-family: var(--bp-theme-font-family-title);
+                color: var(--bp-theme-text-color);
+
             }
 
             display: flex;
@@ -57,6 +60,7 @@
 
         .bp-modal-content {
             grid-row: 2;
+            color: var(--bp-theme-text-color);
         }
 
         .bp-modal-actions {
@@ -66,6 +70,7 @@
             gap: 10px;
             justify-content: flex-end;
             align-items: center;
+            color: var(--bp-theme-text-color);
         }
     }
 }

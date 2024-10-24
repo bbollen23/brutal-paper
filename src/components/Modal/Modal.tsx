@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.scss'
 import { ModalProvider } from './ModalContext';
+import ReactDOM from 'react-dom';
 
 interface ModalProps {
     children?: React.ReactNode
@@ -43,19 +44,21 @@ const Modal = ({ onClose, children, opened, closeOnOutside, setOpened, actions, 
 
     return (
         <ModalProvider closeModal={closeModal}>
-            <div
-                onClick={handleClickOutside}
-                className={`bp-modal-backdrop ${isOpen ? 'open' : 'closed'}`}
-            >
+            {ReactDOM.createPortal(
                 <div
-                    className='bp-modal-container' style={style} onClick={(e) => e.stopPropagation()}
+                    onClick={handleClickOutside}
+                    className={`bp-modal-backdrop ${isOpen ? 'open' : 'closed'}`}
                 >
-                    {children}
-                    <div className="bp-modal-actions">
-                        {actions ? actions : null}
+                    <div
+                        className='bp-modal-container' style={style} onClick={(e) => e.stopPropagation()}
+                    >
+                        {children}
+                        <div className="bp-modal-actions">
+                            {actions ? actions : null}
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>, document.body
+            )}
         </ModalProvider>
     )
 }

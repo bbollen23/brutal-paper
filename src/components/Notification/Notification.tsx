@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Notification.scss'
 import { NotificationType } from './NotificationContext';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 interface NotificationProps {
     dismissTime: number | undefined;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDrawer } from '../DrawerContext';
-import Icon from '../../Icon';
+import { Icon } from '../../Icon';
 
 export interface DrawerHeaderProps {
     title: string

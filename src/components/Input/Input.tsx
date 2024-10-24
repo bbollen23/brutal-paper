@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Input.scss';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 export interface InputProps {
     label: string;

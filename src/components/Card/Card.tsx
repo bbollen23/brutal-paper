@@ -4,7 +4,7 @@ import './Card.scss'
 export interface CardProps {
     size?: 'xs' | 'sm' | 'md' | 'lg';
     children?: React.ReactNode
-    title?: string,
+    title?: string | React.ReactNode,
     actions?: React.ReactNode
     actionPosition?: 'bottom' | 'right';
     style?: React.CSSProperties

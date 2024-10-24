@@ -101,3 +101,24 @@
     }
 
 }
+
+.bp-icon-dropdown-menu {
+    border: 1px solid var(--bp-theme-card-shadow-color);
+    box-shadow: 2px 2px 3px var(--bp-theme-card-shadow-color);
+    background-color: var(--bp-theme-header-background-color);
+    color: var(--bp-theme-header-text-color);
+    position: absolute;
+    z-index: 1000;
+    font-family: var(--bp-theme-font-family-text);
+    border-radius: 4px;
+
+    .bp-icon-dropdown-item {
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--bp-theme-item-hover-color);
+        }
+    }
+
+}

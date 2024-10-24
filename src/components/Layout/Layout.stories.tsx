@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Drawer, DrawerHeader, DrawerItem } from "../Drawer";
 import Layout from "./Layout";
 import { Header, HeaderItem, HeaderTitle, HeaderGroup } from "../Header";
-import Icon from '../Icon';
+import { Icon, IconDropdown } from '../Icon';
 import Card from "../Card";
 import { Button } from "../Button";
 import Body from "../Body";
@@ -375,7 +375,7 @@ SidebarLayout.args = {
         <>
             <Scrollable width='100%' height='100%'>
                 <div style={{ width: 'auto' }}>
-                    <Card className='bp-mt-md' size="sm" title="Loon" actionPosition="right" actions={
+                    <Card className='bp-mt-md' size="sm" title={<img src='/hello.jpg' />} actionPosition="right" actions={
                         <>
                             <Button flat label='Cancel' size="sm" theme='cancel' />
                             <Tooltip size="sm" content="Click me!"><Button label='Okay' size="sm" /></Tooltip>
@@ -388,7 +388,7 @@ SidebarLayout.args = {
                         <>
                             <Button flat label='Cancel' size="sm" />
                             <Button label='Okay' size="sm" />
-                            <Select label='Year' selectList={['2020', '2021', '2022']} />
+                            <Tooltip size="sm" content="Sort By"><IconDropdown icon='bi bi-funnel' size='sm' dropDownList={['Average Score', 'Release Date', 'Title', 'Artist']} onChange={(entry) => console.log(entry)} /></Tooltip>
                         </>
                     }>
                         A cell microscopy visualization platform for large-scale cell data analysis

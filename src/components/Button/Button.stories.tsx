@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Button from "./Button";
 import SwitchGroup from "./SwitchGroup";
@@ -59,9 +59,16 @@ const SwitchGroupTemplate: ComponentStory<typeof Button> = (args) => {
         console.log(booleanList)
     }
 
+    const [value, setValue] = useState<boolean[]>([true, true, false])
 
     return (
-        <div style={{ width: '700px', padding: '10px', border: '1px solid grey' }}><SwitchGroup onClick={handleOnClickGroup} {...args} /></div>
+        <div style={{ width: '700px', padding: '10px', border: '1px solid grey' }}>
+            <SwitchGroup
+                clickState={value}
+                setClickState={setValue}
+                onClick={handleOnClickGroup} {...args}
+            />
+        </div>
     )
 };
 
@@ -70,5 +77,4 @@ export const SwitchBtn = SwitchGroupTemplate.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 SwitchBtn.args = {
     labelList: ['hello', 'test', 'one'],
-    defaultState: [true, true, false]
 };
